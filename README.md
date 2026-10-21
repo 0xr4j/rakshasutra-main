@@ -29,7 +29,7 @@ python simulation/audit.py
 python simulation/traffic_simulation.py
 ```
 
-The command rewrites CSV outputs in `results/` and SVG figures in `figures/`. It uses fixed deterministic calculations. It does not model the full RF environment, LoRaWAN regional compliance, BLE receiver performance, human behavior, or a real shrine deployment.
+The first command rewrites arithmetic-check CSVs in `results/` and analytical SVGs in `figures/`. The second writes the fixed-seed illustrative traffic CSV and figure. Neither simulates a validated shrine deployment: one is deterministic arithmetic and the other uses only the explicit synthetic workload in `configs/traffic_scenario.json`.
 
 ## Headline checks
 
