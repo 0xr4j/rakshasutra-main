@@ -1,17 +1,25 @@
 architecture,active_tags_in_cell,offered_load_fraction_from_paper,recomputed_loss_fraction,status
-Raw BLE forwarding,500,1.880,0.976716,G copied from manuscript; loss recomputed with pure-ALOHA formula
-Raw BLE forwarding,1000,3.760,0.999458,G copied from manuscript; loss recomputed with pure-ALOHA formula
-Raw BLE forwarding,2000,7.520,1.000000,G copied from manuscript; loss recomputed with pure-ALOHA formula
-Raw BLE forwarding,3000,11.280,1.000000,G copied from manuscript; loss recomputed with pure-ALOHA formula
-Single-event + raw heartbeat,500,0.065,0.121905,G copied from manuscript; loss recomputed with pure-ALOHA formula
-Single-event + raw heartbeat,1000,0.130,0.228948,G copied from manuscript; loss recomputed with pure-ALOHA formula
-Single-event + raw heartbeat,2000,0.260,0.405479,G copied from manuscript; loss recomputed with pure-ALOHA formula
-Single-event + raw heartbeat,3000,0.390,0.541594,G copied from manuscript; loss recomputed with pure-ALOHA formula
-15 s batch + raw ID list,500,0.030,0.058235,G copied from manuscript; loss recomputed with pure-ALOHA formula
-15 s batch + raw ID list,1000,0.060,0.113080,G copied from manuscript; loss recomputed with pure-ALOHA formula
-15 s batch + raw ID list,2000,0.092,0.168064,G copied from manuscript; loss recomputed with pure-ALOHA formula
-15 s batch + raw ID list,3000,0.125,0.221199,G copied from manuscript; loss recomputed with pure-ALOHA formula
-25-tag chunk + 64 B Bloom,500,0.021,0.041130,G copied from manuscript; loss recomputed with pure-ALOHA formula
-25-tag chunk + 64 B Bloom,1000,0.042,0.080569,G copied from manuscript; loss recomputed with pure-ALOHA formula
-25-tag chunk + 64 B Bloom,2000,0.064,0.120147,G copied from manuscript; loss recomputed with pure-ALOHA formula
-25-tag chunk + 64 B Bloom,3000,0.086,0.158021,G copied from manuscript; loss recomputed with pure-ALOHA formula
+Raw BLE forwarding,500,1.8800,0.976716,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+Raw BLE forwarding,1000,3.7600,0.999458,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+Raw BLE forwarding,2000,7.5200,1.000000,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+Raw BLE forwarding,3000,11.2800,1.000000,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+Single-event + raw heartbeat,500,0.0650,0.121905,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+Single-event + raw heartbeat,1000,0.1300,0.228948,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+Single-event + raw heartbeat,2000,0.2600,0.405479,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+Single-event + raw heartbeat,3000,0.3900,0.541594,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+15 s batch + raw-ID heartbeat,500,0.0480,0.091536,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+15 s batch + raw-ID heartbeat,1000,0.0810,0.149559,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+15 s batch + raw-ID heartbeat,2000,0.1480,0.256213,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+15 s batch + raw-ID heartbeat,3000,0.2150,0.349491,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 60 poles, explicit departures",500,0.0410,0.078728,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 60 poles, explicit departures",1000,0.0690,0.128901,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 60 poles, explicit departures",2000,0.1200,0.213372,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 60 poles, explicit departures",3000,0.1711,0.289794,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 60 poles, implicit departures",500,0.0310,0.060117,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 60 poles, implicit departures",1000,0.0510,0.096970,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 60 poles, implicit departures",2000,0.0850,0.156335,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 60 poles, implicit departures",3000,0.1198,0.213057,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 40 LoRa poles + fiber hubs",500,0.0210,0.041130,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 40 LoRa poles + fiber hubs",1000,0.0340,0.065740,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 40 LoRa poles + fiber hubs",2000,0.0570,0.107742,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula
+"Rakshasutra, 40 LoRa poles + fiber hubs",3000,0.0799,0.147686,G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula

@@ -93,20 +93,20 @@ def main() -> None:
 
     n_cells = cfg["active_tags_per_cell"]
     aloha_rows, lines = [], []
-    colors = ["#7585a1", "#ff7f73", "#ffbf69", "#58d6c5"]
+    colors = ["#7585a1", "#ff7f73", "#ffbf69", "#58d6c5", "#a78bfa", "#4da3ff"]
     for i, item in enumerate(cfg["aloha_table"]):
         values = []
         for n, g in zip(n_cells, item["offered_load_fraction"]):
             loss = 1 - math.exp(-2 * g)
-            aloha_rows.append([item["name"], n, f"{g:.3f}", f"{loss:.6f}",
-                               "G copied from manuscript; loss recomputed with pure-ALOHA formula"])
+            aloha_rows.append([item["name"], n, f"{g:.4f}", f"{loss:.6f}",
+                               "G copied from revised Table 5; loss recomputed from displayed G with pure-ALOHA formula"])
             values.append((n, loss))
         lines.append((item["name"], values, colors[i]))
     write_csv(output / "results" / "aloha_claim_check.csv",
               ["architecture", "active_tags_in_cell", "offered_load_fraction_from_paper", "recomputed_loss_fraction", "status"], aloha_rows)
     svg_line_chart(output / "figures" / "aloha_claim_check.svg",
-                   "Paper table: offered load to pure-ALOHA loss",
-                   "Recomputes only the formula using the manuscript's G values",
+                   "Revised Table 5: offered load to pure-ALOHA loss",
+                   "Loss is recomputed from displayed G; not field performance",
                    "Active tags stated for cell", "Packet loss", lines, 500, 3000, 0, 1,
                    n_cells, [0, .2, .4, .6, .8, 1], True)
 
