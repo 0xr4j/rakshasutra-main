@@ -1,6 +1,4 @@
-# Historical selected claim audit
-
-> **Version scope:** This audit was performed against the earlier nine-page manuscript. The current `paper/rakshasutra_open.pdf` is a revised 10-page manuscript supplied on 21 October 2026. Several headline claims and tables changed. Treat every numeric audit entry below as historical until it is rechecked against the current PDF. See [`version notes`](version-notes.md).
+# Selected claim audit
 
 This is a first-pass engineering consistency audit of the author-supplied manuscript. It is not a peer review, field validation, regulatory opinion, or complete security analysis. “Reproduced” below means only that a stated equation reproduces a stated number under listed inputs.
 
