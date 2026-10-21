@@ -29,3 +29,7 @@ This is a first-pass engineering consistency audit of the author-supplied manusc
 ## What this audit does not establish
 
 It does not establish that the system was built, deployed, tested at SMVD, accepted by shrine authorities, compliant with Indian radio rules, safe for children, or effective in locating pilgrims. It does not verify the manuscript's citations or external site-specific factual claims. Those require primary-source checks and/or measurements.
+
+## Synthetic schedule sensitivity
+
+`simulation/traffic_simulation.py` adds a separate one-hour fixed-seed workload using the assumptions in `configs/traffic_scenario.json`. Under that scenario, batching lowers the number of packets and average airtime load, but the narrow periodic flush jitter creates transmission bursts. The event-driven collision model reports substantially more loss than `1-exp(-2G)` calculated from mean load. This discrepancy is a useful design warning: average offered load alone is insufficient when packet starts are synchronized. It is not an estimate of actual SMVD packet loss; field-like event traces and schedule/jitter experiments are still needed.

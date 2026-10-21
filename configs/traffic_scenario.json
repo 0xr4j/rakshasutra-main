@@ -1,0 +1,27 @@
+{
+  "scenario_name": "illustrative-3000-tags-60-poles",
+  "seed": 20261021,
+  "duration_seconds": 3600,
+  "active_tags": 3000,
+  "poles_in_cell": 60,
+  "mean_tag_passage_seconds": 55,
+  "arrival_batch_interval_seconds": 15,
+  "max_tag_records_per_batch": 25,
+  "bytes_per_arrival_record": 8,
+  "heartbeat_interval_seconds": 60,
+  "bloom_heartbeat_application_bytes": 64,
+  "channels": 8,
+  "spreading_factor": 7,
+  "bandwidth_hz": 125000,
+  "coding_rate_index": 1,
+  "preamble_symbols": 8,
+  "baseline_heartbeat_ids_per_pole": 50,
+  "lora_mac_phy_overhead_bytes": 13,
+  "assumptions": [
+    "The manuscript's 55-second mean passage time is interpreted as one independent arrival event per active tag per mean passage interval across the modeled cell.",
+    "Arrival events are split uniformly across 60 poles. This is a synthetic spatial approximation, not a route trace.",
+    "The baseline sends each arrival record as its own uplink and sends one raw 4-byte-ID list per pole per heartbeat interval.",
+    "The proposed case batches up to 25 eight-byte records at each pole every 15 seconds and sends one fixed 64-byte application heartbeat per pole every 60 seconds.",
+    "Packets use independent uniform channel selection and Poisson event timing; any same-channel airtime overlap destroys all overlapping packets. No capture, retries, duty-cycle enforcement, SF diversity, or RF measurements are modeled."
+  ]
+}

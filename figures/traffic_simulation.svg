@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 570" role="img">
+<rect width="100%" height="100%" fill="#0b1120"/>
+<style>text{font-family:Inter,Segoe UI,Arial,sans-serif}.title{fill:#f4f7fb;font-size:25px;font-weight:700}.sub{fill:#9eacc3;font-size:14px}.label{fill:#d7e2f2;font-size:13px}.grid{stroke:#26344b}</style>
+<text x="70" y="48" class="title">Batching reduces packets, but timing can dominate collisions</text>
+<text x="70" y="75" class="sub">One fixed-seed, one-hour synthetic workload; 3,000 tags, 60 poles, 8 channels</text>
+<text x="80" y="118" fill="#c4d2e5" font-size="16" font-weight="700">Offered load per channel (G)</text>
+<line x1="115" y1="445.0" x2="465" y2="445.0" class="grid"/>
+<text x="105" y="449.0" text-anchor="end" class="sub">0%</text>
+<line x1="115" y1="385.0" x2="465" y2="385.0" class="grid"/>
+<text x="105" y="389.0" text-anchor="end" class="sub">10%</text>
+<line x1="115" y1="325.0" x2="465" y2="325.0" class="grid"/>
+<text x="105" y="329.0" text-anchor="end" class="sub">20%</text>
+<line x1="115" y1="265.0" x2="465" y2="265.0" class="grid"/>
+<text x="105" y="269.0" text-anchor="end" class="sub">30%</text>
+<line x1="115" y1="205.0" x2="465" y2="205.0" class="grid"/>
+<text x="105" y="209.0" text-anchor="end" class="sub">40%</text>
+<line x1="115" y1="145.0" x2="465" y2="145.0" class="grid"/>
+<text x="105" y="149.0" text-anchor="end" class="sub">50%</text>
+<rect x="165" y="188.8" width="78" height="256.2" rx="8" fill="#91a0b9"/>
+<text x="204" y="179.8" text-anchor="middle" fill="#f4f7fb" font-size="14">42.7%</text>
+<text x="204" y="469" text-anchor="middle" class="label">Single-event + raw IDs</text>
+<rect x="320" y="373.2" width="78" height="71.8" rx="8" fill="#58d6c5"/>
+<text x="359" y="364.2" text-anchor="middle" fill="#f4f7fb" font-size="14">12.0%</text>
+<text x="359" y="469" text-anchor="middle" class="label">15 s batches + Bloom</text>
+<line x1="115" y1="145" x2="115" y2="445" stroke="#61718b"/>
+<line x1="115" y1="445" x2="465" y2="445" stroke="#61718b"/>
+<text x="560" y="118" fill="#c4d2e5" font-size="16" font-weight="700">Packet loss in event simulation</text>
+<line x1="595" y1="445.0" x2="945" y2="445.0" class="grid"/>
+<text x="585" y="449.0" text-anchor="end" class="sub">0%</text>
+<line x1="595" y1="385.0" x2="945" y2="385.0" class="grid"/>
+<text x="585" y="389.0" text-anchor="end" class="sub">20%</text>
+<line x1="595" y1="325.0" x2="945" y2="325.0" class="grid"/>
+<text x="585" y="329.0" text-anchor="end" class="sub">40%</text>
+<line x1="595" y1="265.0" x2="945" y2="265.0" class="grid"/>
+<text x="585" y="269.0" text-anchor="end" class="sub">60%</text>
+<line x1="595" y1="205.0" x2="945" y2="205.0" class="grid"/>
+<text x="585" y="209.0" text-anchor="end" class="sub">80%</text>
+<line x1="595" y1="145.0" x2="945" y2="145.0" class="grid"/>
+<text x="585" y="149.0" text-anchor="end" class="sub">100%</text>
+<rect x="645" y="275.6" width="78" height="169.4" rx="8" fill="#91a0b9"/>
+<text x="684" y="266.6" text-anchor="middle" fill="#f4f7fb" font-size="14">56.5%</text>
+<text x="684" y="469" text-anchor="middle" class="label">Single-event + raw IDs</text>
+<line x1="638" y1="272.7" x2="730" y2="272.7" stroke="#ffbf69" stroke-width="3" stroke-dasharray="6 4"/>
+<text x="684" y="289.7" text-anchor="middle" fill="#ffcf8b" font-size="11">Poisson from G: 57.4%</text>
+<rect x="800" y="229.4" width="78" height="215.6" rx="8" fill="#58d6c5"/>
+<text x="839" y="220.4" text-anchor="middle" fill="#f4f7fb" font-size="14">71.9%</text>
+<text x="839" y="469" text-anchor="middle" class="label">15 s batches + Bloom</text>
+<line x1="793" y1="381.1" x2="885" y2="381.1" stroke="#ffbf69" stroke-width="3" stroke-dasharray="6 4"/>
+<text x="839" y="398.1" text-anchor="middle" fill="#ffcf8b" font-size="11">Poisson from G: 21.3%</text>
+<line x1="595" y1="145" x2="595" y2="445" stroke="#61718b"/>
+<line x1="595" y1="445" x2="945" y2="445" stroke="#61718b"/>
+<text x="70" y="520" fill="#9eacc3" font-size="12">Gold dashed marks on the right show 1−exp(−2G). The periodic batched case violates its Poisson-arrival premise; its large gap is a schedule-burst warning, not a deployment prediction.</text>
+</svg>

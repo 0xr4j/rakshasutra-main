@@ -12,6 +12,8 @@
 
 - `paper/rakshasutra_open.pdf` — exact copy of the supplied nine-page PDF.
 - `simulation/audit.py` — standard-library Python calculations for LoRa airtime, pure-ALOHA collision probability, Bloom-filter false positives, BLE single-hit capture assumptions, pseudonym collision probability, and idealized battery arithmetic.
+- `simulation/traffic_simulation.py` — a fixed-seed, explicitly synthetic single-cell Poisson traffic comparison.
+- `configs/traffic_scenario.json` — its editable scenario inputs and all traffic-model assumptions.
 - `configs/claims.json` — inputs transcribed from the paper, with provenance and evidence status.
 - `results/` — generated CSV tables from the audit script.
 - `figures/` — generated SVG plots and a conceptual system diagram.
@@ -24,6 +26,7 @@ Requires Python 3.10 or later; the audit uses only the Python standard library.
 
 ```bash
 python simulation/audit.py
+python simulation/traffic_simulation.py
 ```
 
 The command rewrites CSV outputs in `results/` and SVG figures in `figures/`. It uses fixed deterministic calculations. It does not model the full RF environment, LoRaWAN regional compliance, BLE receiver performance, human behavior, or a real shrine deployment.
@@ -36,6 +39,11 @@ The command rewrites CSV outputs in `results/` and SVG figures in `figures/`. It
 - The stated average current of 29.74 µA implies ideal capacity/current lifetimes that differ from the paper's stated month figures. Real life must be established with a complete load profile and cold-temperature hardware tests.
 - A claim such as 99.4% EV capture cannot be derived from “five opportunities” alone; the per-advertisement packet reception probability must be measured or otherwise justified.
 - The 3000-tag comparison table's offered-load values imply a 77.9% drop from 39.0% to 8.6%; the abstract separately states an 82.4% airtime reduction, which needs reconciliation.
+- The separate synthetic workload does not tune itself to the paper's 15.8% loss result; it uses the assumptions listed in `configs/traffic_scenario.json` and reports its own seeded outcome.
+
+![Illustrative traffic simulation](figures/traffic_simulation.svg)
+
+In this synthetic workload, periodic batch flushes cluster the transmissions. The event simulation therefore produces a much higher loss than the pure-ALOHA estimate from mean offered load alone. This is a schedule-sensitivity warning under the stated assumptions, not evidence of actual shrine-network performance.
 
 See the audit notes before quoting any number from this repository.
 

@@ -14,6 +14,14 @@ python simulation/audit.py
 
 The script reads `configs/claims.json`, then writes deterministic CSVs to `results/` and SVGs to `figures/`.
 
+Run the separate event-driven scenario:
+
+```bash
+python simulation/traffic_simulation.py
+```
+
+This fixed-seed simulation interprets the paper's 3,000 tags, 60 poles, and 55-second passage assumption as one Poisson arrival stream per cell, evenly spread across poles. It compares single-event uplinks plus raw per-pole ID heartbeats with 15-second, at-most-25-record chunks plus fixed 64-byte per-pole heartbeats. This is a chosen synthetic workload, **not** the paper's traffic derivation and not a reconstruction of shrine operations. The generated collision loss depends on the written scenario and seed. Because the proposed batches are emitted in a narrow 200–1500 ms jitter window every 15 seconds, transmissions cluster. The simulator reports both event-driven loss and the pure-ALOHA estimate from mean load to expose how the Poisson-arrival approximation can fail for scheduled bursts.
+
 ## Model definitions
 
 - **LoRa airtime:** Semtech-style symbol-time and payload-symbol calculation for the explicitly stated SF7/125 kHz/CR 4/5 scenario. PHY payload lengths are transcribed assumptions.
