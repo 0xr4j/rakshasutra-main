@@ -6,17 +6,14 @@
     "bandwidth_hz": 125000,
     "coding_rate_index": 1,
     "preamble_symbols": 8,
-    "phy_payload_bytes": [28, 77, 125, 213]
+    "phy_payload_bytes": [28, 77, 213]
   },
   "aloha_table": [
     {"name": "Raw BLE forwarding", "offered_load_fraction": [1.880, 3.760, 7.520, 11.280]},
     {"name": "Single-event + raw heartbeat", "offered_load_fraction": [0.065, 0.130, 0.260, 0.390]},
-    {"name": "15 s batch + raw-ID heartbeat", "offered_load_fraction": [0.048, 0.081, 0.148, 0.215]},
-    {"name": "Rakshasutra, 60 poles, explicit departures", "offered_load_fraction": [0.041, 0.069, 0.120, 0.1711]},
-    {"name": "Rakshasutra, 60 poles, implicit departures", "offered_load_fraction": [0.031, 0.051, 0.085, 0.1198]},
-    {"name": "Rakshasutra, 40 LoRa poles + fiber hubs", "offered_load_fraction": [0.021, 0.034, 0.057, 0.0799]}
+    {"name": "15 s batch + raw ID list", "offered_load_fraction": [0.030, 0.060, 0.092, 0.125]},
+    {"name": "25-tag chunk + 64 B Bloom", "offered_load_fraction": [0.021, 0.042, 0.064, 0.086]}
   ],
-  "aloha_table_source": "Table 5 of the supplied 10-page manuscript; loss is recomputed from the displayed G values using 1 - exp(-2G).",
   "active_tags_per_cell": [500, 1000, 2000, 3000],
   "bloom": {"bits": 512, "hashes": 3, "population": [10, 25, 50, 100, 250, 500, 1024]},
   "ble_capture": {"advertising_interval_s": 0.8, "detection_zone_m": 25, "vehicle_speed_kmh": 20, "claimed_capture_probability": 0.994},

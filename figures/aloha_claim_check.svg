@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 610" role="img">
 <rect width="100%" height="100%" fill="#0b1120"/>
 <style>text{font-family:Inter,Segoe UI,Arial,sans-serif}.muted{fill:#9eacc3}.title{fill:#f4f7fb;font-size:25px;font-weight:700}.small{font-size:13px}.label{fill:#d7e2f2;font-size:14px}.grid{stroke:#26344b;stroke-width:1}</style>
-<text x="90" y="42" class="title">Revised Table 5: offered load to pure-ALOHA loss</text>
-<text x="90" y="68" class="muted small">Loss is recomputed from displayed G; not field performance</text>
+<text x="90" y="42" class="title">Paper table: offered load to pure-ALOHA loss</text>
+<text x="90" y="68" class="muted small">Recomputes only the formula using the manuscript's G values</text>
 <line x1="90" y1="515.0" x2="960" y2="515.0" class="grid"/>
 <text x="78" y="520.0" text-anchor="end" class="muted small">0%</text>
 <line x1="90" y1="433.0" x2="960" y2="433.0" class="grid"/>
@@ -33,17 +33,11 @@
 <polyline points="90.0,465.0 264.0,421.1 612.0,348.8 960.0,292.9" fill="none" stroke="#ff7f73" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
 <line x1="310" y1="548" x2="337" y2="548" stroke="#ff7f73" stroke-width="3"/>
 <text x="346" y="553" class="muted small">Single-event + raw heartbeat</text>
-<polyline points="90.0,477.5 264.0,453.7 612.0,410.0 960.0,371.7" fill="none" stroke="#ffbf69" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<polyline points="90.0,491.1 264.0,468.6 612.0,446.1 960.0,424.3" fill="none" stroke="#ffbf69" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
 <line x1="530" y1="548" x2="557" y2="548" stroke="#ffbf69" stroke-width="3"/>
-<text x="566" y="553" class="muted small">15 s batch + raw-ID heartbeat</text>
-<polyline points="90.0,482.7 264.0,462.2 612.0,427.5 960.0,396.2" fill="none" stroke="#58d6c5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<text x="566" y="553" class="muted small">15 s batch + raw ID list</text>
+<polyline points="90.0,498.1 264.0,482.0 612.0,465.7 960.0,450.2" fill="none" stroke="#58d6c5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
 <line x1="750" y1="548" x2="777" y2="548" stroke="#58d6c5" stroke-width="3"/>
-<text x="786" y="553" class="muted small">Rakshasutra, 60 poles, explicit departures</text>
-<polyline points="90.0,490.4 264.0,475.2 612.0,450.9 960.0,427.6" fill="none" stroke="#a78bfa" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-<line x1="970" y1="548" x2="997" y2="548" stroke="#a78bfa" stroke-width="3"/>
-<text x="1006" y="553" class="muted small">Rakshasutra, 60 poles, implicit departures</text>
-<polyline points="90.0,498.1 264.0,488.0 612.0,470.8 960.0,454.4" fill="none" stroke="#4da3ff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-<line x1="1190" y1="548" x2="1217" y2="548" stroke="#4da3ff" stroke-width="3"/>
-<text x="1226" y="553" class="muted small">Rakshasutra, 40 LoRa poles + fiber hubs</text>
+<text x="786" y="553" class="muted small">25-tag chunk + 64 B Bloom</text>
 <text x="90" y="603" class="muted" font-size="11">Analytical / assumption-based illustration; not field measurements.</text>
 </svg>

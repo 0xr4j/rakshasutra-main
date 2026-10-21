@@ -14,8 +14,6 @@ python simulation/audit.py
 
 The script reads `configs/claims.json`, then writes deterministic CSVs to `results/` and SVGs to `figures/`.
 
-The LoRa airtime sizes and Table 5 offered-load values are transcribed from the revised supplied PDF. For every displayed `G`, the audit recomputes only the pure-ALOHA loss `1 - exp(-2G)`; it does not validate how the manuscript derived `G`. Losses in the CSV are generated values, not copies of the manuscript's inconsistent rounded cells.
-
 Run the separate event-driven scenario:
 
 ```bash
@@ -36,5 +34,3 @@ This fixed-seed simulation interprets the paper's 3,000 tags, 60 poles, and 55-s
 ## Output interpretation
 
 CSV values include a `status` or `note` column to preserve their provenance. Generated SVGs include captions stating that the curves are analytical or assumption-based. Do not relabel them as field results.
-
-To regenerate the appended correction sheet and combined reading-copy PDF, install `pypdf` and `reportlab` and run `python simulation/build_erratum_pdf.py`. The script reads `paper/rakshasutra_double_column_tables_fixed_source.pdf` and never rewrites that preserved source.
