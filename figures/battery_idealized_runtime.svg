@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 610" role="img">
+<rect width="100%" height="100%" fill="#0b1120"/>
+<style>text{font-family:Inter,Segoe UI,Arial,sans-serif}.muted{fill:#9eacc3}.title{fill:#f4f7fb;font-size:25px;font-weight:700}.small{font-size:13px}.label{fill:#d7e2f2;font-size:14px}.grid{stroke:#26344b;stroke-width:1}</style>
+<text x="90" y="42" class="title">Ideal capacity/current battery arithmetic</text>
+<text x="90" y="68" class="muted small">Ignores pulse loads, cutoff, cold discharge curves, losses and aging</text>
+<line x1="90" y1="515.0" x2="960" y2="515.0" class="grid"/>
+<text x="78" y="520.0" text-anchor="end" class="muted small">0</text>
+<line x1="90" y1="446.7" x2="960" y2="446.7" class="grid"/>
+<text x="78" y="451.7" text-anchor="end" class="muted small">15</text>
+<line x1="90" y1="378.3" x2="960" y2="378.3" class="grid"/>
+<text x="78" y="383.3" text-anchor="end" class="muted small">30</text>
+<line x1="90" y1="310.0" x2="960" y2="310.0" class="grid"/>
+<text x="78" y="315.0" text-anchor="end" class="muted small">45</text>
+<line x1="90" y1="241.7" x2="960" y2="241.7" class="grid"/>
+<text x="78" y="246.7" text-anchor="end" class="muted small">60</text>
+<line x1="90" y1="173.3" x2="960" y2="173.3" class="grid"/>
+<text x="78" y="178.3" text-anchor="end" class="muted small">75</text>
+<line x1="90" y1="105.0" x2="960" y2="105.0" class="grid"/>
+<text x="78" y="110.0" text-anchor="end" class="muted small">90</text>
+<line x1="90.0" y1="105" x2="90.0" y2="515" class="grid" opacity=".55"/>
+<text x="90.0" y="539" text-anchor="middle" class="muted small">8</text>
+<line x1="198.8" y1="105" x2="198.8" y2="515" class="grid" opacity=".55"/>
+<text x="198.8" y="539" text-anchor="middle" class="muted small">10</text>
+<line x1="307.5" y1="105" x2="307.5" y2="515" class="grid" opacity=".55"/>
+<text x="307.5" y="539" text-anchor="middle" class="muted small">12</text>
+<line x1="416.2" y1="105" x2="416.2" y2="515" class="grid" opacity=".55"/>
+<text x="416.2" y="539" text-anchor="middle" class="muted small">14</text>
+<line x1="525.0" y1="105" x2="525.0" y2="515" class="grid" opacity=".55"/>
+<text x="525.0" y="539" text-anchor="middle" class="muted small">16</text>
+<line x1="633.8" y1="105" x2="633.8" y2="515" class="grid" opacity=".55"/>
+<text x="633.8" y="539" text-anchor="middle" class="muted small">18</text>
+<line x1="742.5" y1="105" x2="742.5" y2="515" class="grid" opacity=".55"/>
+<text x="742.5" y="539" text-anchor="middle" class="muted small">20</text>
+<line x1="851.2" y1="105" x2="851.2" y2="515" class="grid" opacity=".55"/>
+<text x="851.2" y="539" text-anchor="middle" class="muted small">22</text>
+<line x1="960.0" y1="105" x2="960.0" y2="515" class="grid" opacity=".55"/>
+<text x="960.0" y="539" text-anchor="middle" class="muted small">24</text>
+<line x1="90" y1="105" x2="90" y2="515" stroke="#61718b"/>
+<line x1="90" y1="515" x2="960" y2="515" stroke="#61718b"/>
+<text x="525.0" y="583" text-anchor="middle" class="label">Active hours per day</text>
+<text x="25" y="310.0" transform="rotate(-90 25 310.0)" text-anchor="middle" class="label">Idealized months</text>
+<polyline points="90.0,140.1 144.4,179.6 198.8,211.6 253.1,238.0 307.5,260.1 361.9,279.0 416.2,295.3 470.6,309.5 525.0,321.9 579.4,333.0 633.8,342.8 688.1,351.6 742.5,359.6 796.9,366.8 851.2,373.4 905.6,379.5 960.0,385.0" fill="none" stroke="#ffbf69" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="90" y1="548" x2="117" y2="548" stroke="#ffbf69" stroke-width="3"/>
+<text x="126" y="553" class="muted small">Nominal cell</text>
+<polyline points="90.0,252.6 144.4,280.2 198.8,302.6 253.1,321.1 307.5,336.6 361.9,349.8 416.2,361.2 470.6,371.1 525.0,379.9 579.4,387.6 633.8,394.5 688.1,400.7 742.5,406.2 796.9,411.3 851.2,415.9 905.6,420.1 960.0,424.0" fill="none" stroke="#58d6c5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="310" y1="548" x2="337" y2="548" stroke="#58d6c5" stroke-width="3"/>
+<text x="346" y="553" class="muted small">Cold capacity assumption</text>
+<text x="90" y="603" class="muted" font-size="11">Analytical / assumption-based illustration; not field measurements.</text>
+</svg>

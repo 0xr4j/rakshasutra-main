@@ -1,0 +1,8 @@
+inserted_ids,filter_bits,hashes,approx_false_positive_fraction,status
+10,512,3,0.00018432,approximation; assumes independent uniform hashes
+25,512,3,0.00252995,approximation; assumes independent uniform hashes
+50,512,3,0.01637827,approximation; assumes independent uniform hashes
+100,512,3,0.08718356,approximation; assumes independent uniform hashes
+250,512,3,0.45455422,approximation; assumes independent uniform hashes
+500,512,3,0.84816551,approximation; assumes independent uniform hashes
+1024,512,3,0.99258216,approximation; assumes independent uniform hashes

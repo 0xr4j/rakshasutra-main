@@ -1,0 +1,2 @@
+dwell_seconds,minimum_opportunities_by_floor,paper_capture_claim,required_per_ad_success_probability,status
+4.5000,5,0.9940,0.640557,requires independent per-ad reception; the required reception probability is not measured

@@ -1,0 +1,2 @@
+current_ma,pulse_duration_ms,capacitance_uf,ideal_capacitor_only_voltage_change_v,status
+32,100,100,32.00,ideal ΔV=I·t/C sanity check; not a model of the battery-plus-capacitor circuit

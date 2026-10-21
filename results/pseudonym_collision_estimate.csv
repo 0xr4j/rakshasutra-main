@@ -1,0 +1,2 @@
+population,identifier_bits,birthday_collision_probability,status
+3000,32,0.00104684,"uniform random-space approximation, not observed pseudonym data"

@@ -1,0 +1,17 @@
+architecture,active_tags_in_cell,offered_load_fraction_from_paper,recomputed_loss_fraction,status
+Raw BLE forwarding,500,1.880,0.976716,G copied from manuscript; loss recomputed with pure-ALOHA formula
+Raw BLE forwarding,1000,3.760,0.999458,G copied from manuscript; loss recomputed with pure-ALOHA formula
+Raw BLE forwarding,2000,7.520,1.000000,G copied from manuscript; loss recomputed with pure-ALOHA formula
+Raw BLE forwarding,3000,11.280,1.000000,G copied from manuscript; loss recomputed with pure-ALOHA formula
+Single-event + raw heartbeat,500,0.065,0.121905,G copied from manuscript; loss recomputed with pure-ALOHA formula
+Single-event + raw heartbeat,1000,0.130,0.228948,G copied from manuscript; loss recomputed with pure-ALOHA formula
+Single-event + raw heartbeat,2000,0.260,0.405479,G copied from manuscript; loss recomputed with pure-ALOHA formula
+Single-event + raw heartbeat,3000,0.390,0.541594,G copied from manuscript; loss recomputed with pure-ALOHA formula
+15 s batch + raw ID list,500,0.030,0.058235,G copied from manuscript; loss recomputed with pure-ALOHA formula
+15 s batch + raw ID list,1000,0.060,0.113080,G copied from manuscript; loss recomputed with pure-ALOHA formula
+15 s batch + raw ID list,2000,0.092,0.168064,G copied from manuscript; loss recomputed with pure-ALOHA formula
+15 s batch + raw ID list,3000,0.125,0.221199,G copied from manuscript; loss recomputed with pure-ALOHA formula
+25-tag chunk + 64 B Bloom,500,0.021,0.041130,G copied from manuscript; loss recomputed with pure-ALOHA formula
+25-tag chunk + 64 B Bloom,1000,0.042,0.080569,G copied from manuscript; loss recomputed with pure-ALOHA formula
+25-tag chunk + 64 B Bloom,2000,0.064,0.120147,G copied from manuscript; loss recomputed with pure-ALOHA formula
+25-tag chunk + 64 B Bloom,3000,0.086,0.158021,G copied from manuscript; loss recomputed with pure-ALOHA formula

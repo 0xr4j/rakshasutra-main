@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 610" role="img">
+<rect width="100%" height="100%" fill="#0b1120"/>
+<style>text{font-family:Inter,Segoe UI,Arial,sans-serif}.muted{fill:#9eacc3}.title{fill:#f4f7fb;font-size:25px;font-weight:700}.small{font-size:13px}.label{fill:#d7e2f2;font-size:14px}.grid{stroke:#26344b;stroke-width:1}</style>
+<text x="90" y="42" class="title">Bloom-filter false positives grow with occupancy</text>
+<text x="90" y="68" class="muted small">512-bit filter, three hashes; standard approximation</text>
+<line x1="90" y1="515.0" x2="960" y2="515.0" class="grid"/>
+<text x="78" y="520.0" text-anchor="end" class="muted small">0%</text>
+<line x1="90" y1="433.0" x2="960" y2="433.0" class="grid"/>
+<text x="78" y="438.0" text-anchor="end" class="muted small">20%</text>
+<line x1="90" y1="351.0" x2="960" y2="351.0" class="grid"/>
+<text x="78" y="356.0" text-anchor="end" class="muted small">40%</text>
+<line x1="90" y1="269.0" x2="960" y2="269.0" class="grid"/>
+<text x="78" y="274.0" text-anchor="end" class="muted small">60%</text>
+<line x1="90" y1="187.0" x2="960" y2="187.0" class="grid"/>
+<text x="78" y="192.0" text-anchor="end" class="muted small">80%</text>
+<line x1="90" y1="105.0" x2="960" y2="105.0" class="grid"/>
+<text x="78" y="110.0" text-anchor="end" class="muted small">100%</text>
+<line x1="90.0" y1="105" x2="90.0" y2="515" class="grid" opacity=".55"/>
+<text x="90.0" y="539" text-anchor="middle" class="muted small">0</text>
+<line x1="259.9" y1="105" x2="259.9" y2="515" class="grid" opacity=".55"/>
+<text x="259.9" y="539" text-anchor="middle" class="muted small">200</text>
+<line x1="429.8" y1="105" x2="429.8" y2="515" class="grid" opacity=".55"/>
+<text x="429.8" y="539" text-anchor="middle" class="muted small">400</text>
+<line x1="599.8" y1="105" x2="599.8" y2="515" class="grid" opacity=".55"/>
+<text x="599.8" y="539" text-anchor="middle" class="muted small">600</text>
+<line x1="769.7" y1="105" x2="769.7" y2="515" class="grid" opacity=".55"/>
+<text x="769.7" y="539" text-anchor="middle" class="muted small">800</text>
+<line x1="939.6" y1="105" x2="939.6" y2="515" class="grid" opacity=".55"/>
+<text x="939.6" y="539" text-anchor="middle" class="muted small">1000</text>
+<line x1="90" y1="105" x2="90" y2="515" stroke="#61718b"/>
+<line x1="90" y1="515" x2="960" y2="515" stroke="#61718b"/>
+<text x="525.0" y="583" text-anchor="middle" class="label">Inserted IDs</text>
+<text x="25" y="310.0" transform="rotate(-90 25 310.0)" text-anchor="middle" class="label">False-positive probability</text>
+<polyline points="98.5,514.9 111.2,514.0 132.5,508.3 175.0,479.3 302.4,328.6 514.8,167.3 960.0,108.0" fill="none" stroke="#58d6c5" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="90" y1="548" x2="117" y2="548" stroke="#58d6c5" stroke-width="3"/>
+<text x="126" y="553" class="muted small">512 bits / 3 hashes</text>
+<text x="90" y="603" class="muted" font-size="11">Analytical / assumption-based illustration; not field measurements.</text>
+</svg>

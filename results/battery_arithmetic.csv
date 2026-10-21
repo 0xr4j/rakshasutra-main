@@ -1,0 +1,3 @@
+capacity_case,capacity_mah,ideal_months_continuous_active,ideal_months_with_stated_daily_sleep,status
+nominal,620,28.54,48.23,"ideal capacity/current arithmetic only; excludes cell curves, pulses, cutoff and self-discharge"
+cold derated assumption,434,19.98,33.76,"ideal capacity/current arithmetic only; excludes cell curves, pulses, cutoff and self-discharge"
