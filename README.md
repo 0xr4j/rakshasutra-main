@@ -40,7 +40,6 @@ The first command rewrites arithmetic-check CSVs in `results/` and analytical SV
 - A claim such as 99.4% EV capture cannot be derived from “five opportunities” alone; the per-advertisement packet reception probability must be measured or otherwise justified.
 - The 3000-tag comparison table's offered-load values imply a 77.9% drop from 39.0% to 8.6%; the abstract separately states an 82.4% airtime reduction, which needs reconciliation.
 - The separate synthetic workload does not tune itself to the paper's 15.8% loss result; it uses the assumptions listed in `configs/traffic_scenario.json` and reports mean loss plus run-to-run spread across deterministic seeds. The percentiles do not account for uncertainty in assumptions or validate field performance.
-- The traffic simulation now reports a mean and run-level percentiles across 40 deterministic seeds. Those percentiles represent stochastic spread under the chosen inputs, not uncertainty in the assumptions or field performance.
 
 ![Illustrative traffic simulation](figures/traffic_simulation.svg)
 
