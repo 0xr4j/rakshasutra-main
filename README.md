@@ -15,7 +15,7 @@
 - `simulation/traffic_simulation.py` — an explicitly synthetic single-cell packet-overlap simulation, summarized across independent deterministic seeds.
 - `configs/traffic_scenario.json` — its editable scenario inputs and all traffic-model assumptions.
 - `configs/claims.json` — inputs transcribed from the paper, with provenance and evidence status.
-- `results/` — generated CSV tables from the audit script.
+- `results/` — generated CSV tables from the deterministic audit and traffic simulation, including per-run records.
 - `figures/` — generated SVG plots and a conceptual system diagram.
 - `docs/claim-audit.md` — claim-by-claim limitations and technical issues to resolve before a preprint or deployment claim.
 - `docs/reproduction.md` — exact commands and model definitions.
@@ -29,7 +29,7 @@ python simulation/audit.py
 python simulation/traffic_simulation.py
 ```
 
-The first command rewrites arithmetic-check CSVs in `results/` and analytical SVGs in `figures/`. The second writes the fixed-seed illustrative traffic CSV and figure. Neither simulates a validated shrine deployment: one is deterministic arithmetic and the other uses only the explicit synthetic workload in `configs/traffic_scenario.json`.
+The first command rewrites arithmetic-check CSVs in `results/` and analytical SVGs in `figures/`. The second runs 40 deterministic seeds and writes a traffic summary, per-run CSV, and figure. Neither simulates a validated shrine deployment: one is deterministic arithmetic and the other uses only the explicit synthetic workload in `configs/traffic_scenario.json`.
 
 ## Headline checks
 
