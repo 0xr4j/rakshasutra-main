@@ -1,6 +1,7 @@
 {
   "scenario_name": "illustrative-3000-tags-60-poles",
   "seed": 20261021,
+  "replications": 40,
   "duration_seconds": 3600,
   "active_tags": 3000,
   "poles_in_cell": 60,
@@ -22,6 +23,7 @@
     "Arrival events are split uniformly across 60 poles. This is a synthetic spatial approximation, not a route trace.",
     "The baseline sends each arrival record as its own uplink and sends one raw 4-byte-ID list per pole per heartbeat interval.",
     "The proposed case batches up to 25 eight-byte records at each pole every 15 seconds and sends one fixed 64-byte application heartbeat per pole every 60 seconds.",
-    "Packets use independent uniform channel selection and Poisson event timing; any same-channel airtime overlap destroys all overlapping packets. No capture, retries, duty-cycle enforcement, SF diversity, or RF measurements are modeled."
+    "Packets use independent uniform channel selection and the scenario-specific event timing; any same-channel airtime overlap destroys all overlapping packets. No capture, retries, duty-cycle enforcement, SF diversity, or RF measurements are modeled.",
+    "The traffic model runs 40 independent deterministic seeds. Its 2.5th and 97.5th percentiles describe run-to-run stochastic variation under this configured scenario; they do not represent uncertainty in assumptions or measured shrine traffic."
   ]
 }

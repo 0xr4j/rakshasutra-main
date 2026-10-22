@@ -20,7 +20,7 @@ Run the separate event-driven scenario:
 python simulation/traffic_simulation.py
 ```
 
-This fixed-seed simulation interprets the paper's 3,000 tags, 60 poles, and 55-second passage assumption as one Poisson arrival stream per cell, evenly spread across poles. It compares single-event uplinks plus raw per-pole ID heartbeats with 15-second, at-most-25-record chunks plus fixed 64-byte per-pole heartbeats. This is a chosen synthetic workload, **not** the paper's traffic derivation and not a reconstruction of shrine operations. The generated collision loss depends on the written scenario and seed. Because the proposed batches are emitted in a narrow 200–1500 ms jitter window every 15 seconds, transmissions cluster. The simulator reports both event-driven loss and the pure-ALOHA estimate from mean load to expose how the Poisson-arrival approximation can fail for scheduled bursts.
+This simulation interprets the paper's 3,000 tags, 60 poles, and 55-second passage assumption as one Poisson arrival stream per cell, evenly spread across poles. It compares single-event uplinks plus raw per-pole ID heartbeats with 15-second, at-most-25-record chunks plus fixed 64-byte per-pole heartbeats. This is a chosen synthetic workload, **not** the paper's traffic derivation and not a reconstruction of shrine operations. The default runs 40 independent deterministic seeds and writes both a summary (`results/illustrative_traffic_simulation.csv`) and per-run records (`results/illustrative_traffic_replications.csv`). The summary includes the mean, standard deviation, and 2.5th–97.5th percentiles of run-level loss. These percentiles describe stochastic run-to-run variation under the configured assumptions; they do not measure uncertainty in the assumptions or field performance. Because the proposed batches are emitted in a narrow 200–1500 ms jitter window every 15 seconds, transmissions cluster. The simulator reports both event-driven loss and the pure-ALOHA estimate from mean load to expose how the Poisson-arrival approximation can fail for scheduled bursts.
 
 ## Model definitions
 
@@ -34,3 +34,5 @@ This fixed-seed simulation interprets the paper's 3,000 tags, 60 poles, and 55-s
 ## Output interpretation
 
 CSV values include a `status` or `note` column to preserve their provenance. Generated SVGs include captions stating that the curves are analytical or assumption-based. Do not relabel them as field results.
+
+The traffic-model figure shows mean loss across seeds with whiskers spanning the empirical 2.5th–97.5th percentiles. This is a run-level spread summary, not a confidence interval for an unknown deployment loss and not a parameter-uncertainty analysis.

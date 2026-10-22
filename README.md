@@ -12,7 +12,7 @@
 
 - `paper/rakshasutra_open.pdf` — exact copy of the supplied nine-page PDF.
 - `simulation/audit.py` — standard-library Python calculations for LoRa airtime, pure-ALOHA collision probability, Bloom-filter false positives, BLE single-hit capture assumptions, pseudonym collision probability, and idealized battery arithmetic.
-- `simulation/traffic_simulation.py` — a fixed-seed, explicitly synthetic single-cell Poisson traffic comparison.
+- `simulation/traffic_simulation.py` — an explicitly synthetic single-cell packet-overlap simulation, summarized across independent deterministic seeds.
 - `configs/traffic_scenario.json` — its editable scenario inputs and all traffic-model assumptions.
 - `configs/claims.json` — inputs transcribed from the paper, with provenance and evidence status.
 - `results/` — generated CSV tables from the audit script.
@@ -39,7 +39,8 @@ The first command rewrites arithmetic-check CSVs in `results/` and analytical SV
 - The stated average current of 29.74 µA implies ideal capacity/current lifetimes that differ from the paper's stated month figures. Real life must be established with a complete load profile and cold-temperature hardware tests.
 - A claim such as 99.4% EV capture cannot be derived from “five opportunities” alone; the per-advertisement packet reception probability must be measured or otherwise justified.
 - The 3000-tag comparison table's offered-load values imply a 77.9% drop from 39.0% to 8.6%; the abstract separately states an 82.4% airtime reduction, which needs reconciliation.
-- The separate synthetic workload does not tune itself to the paper's 15.8% loss result; it uses the assumptions listed in `configs/traffic_scenario.json` and reports its own seeded outcome.
+- The separate synthetic workload does not tune itself to the paper's 15.8% loss result; it uses the assumptions listed in `configs/traffic_scenario.json` and reports mean loss plus run-to-run spread across deterministic seeds. The percentiles do not account for uncertainty in assumptions or validate field performance.
+- The traffic simulation now reports a mean and run-level percentiles across 40 deterministic seeds. Those percentiles represent stochastic spread under the chosen inputs, not uncertainty in the assumptions or field performance.
 
 ![Illustrative traffic simulation](figures/traffic_simulation.svg)
 

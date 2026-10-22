@@ -8,6 +8,7 @@ import csv
 import json
 import math
 import random
+import statistics
 from collections import defaultdict
 from pathlib import Path
 
@@ -112,6 +113,42 @@ def summarize(name: str, packets: list[tuple[float, float, int]], channels: int,
             "fixed-seed synthetic events; not measured traffic"]
 
 
+def percentile(values: list[float], fraction: float) -> float:
+    """Linearly interpolated empirical percentile, with no third-party dependency."""
+    if not values:
+        raise ValueError("percentile requires at least one value")
+    if not 0.0 <= fraction <= 1.0:
+        raise ValueError("fraction must be between 0 and 1")
+    ordered = sorted(values)
+    position = (len(ordered) - 1) * fraction
+    lower = math.floor(position)
+    upper = math.ceil(position)
+    weight = position - lower
+    return ordered[lower] * (1.0 - weight) + ordered[upper] * weight
+
+
+def summarize_replications(name: str, runs: list[list[object]],
+                           duration: int) -> list[object]:
+    """Summarize run-to-run variability; percentiles are not parameter CIs."""
+    losses = [float(row[4]) for row in runs]
+    metrics = [[int(row[1]), float(row[2]), int(row[3]), float(row[5]), float(row[6])]
+               for row in runs]
+    n = len(runs)
+    return [name,
+            f"{statistics.mean(row[0] for row in metrics):.2f}",
+            f"{statistics.mean(row[1] for row in metrics):.8f}",
+            f"{statistics.mean(row[2] for row in metrics):.2f}",
+            f"{statistics.mean(losses):.8f}",
+            f"{statistics.mean(row[3] for row in metrics):.8f}",
+            f"{statistics.mean(row[4] for row in metrics):.8f}",
+            duration,
+            "synthetic workload; no field measurements",
+            n,
+            f"{statistics.stdev(losses) if n > 1 else 0.0:.8f}",
+            f"{percentile(losses, 0.025):.8f}",
+            f"{percentile(losses, 0.975):.8f}"]
+
+
 def write_figure(path: Path, rows: list[list[object]]) -> None:
     labels = ["Single-event + raw IDs", "15 s batches + Bloom"]
     colors = ["#91a0b9", "#58d6c5"]
@@ -120,7 +157,7 @@ def write_figure(path: Path, rows: list[list[object]]) -> None:
              '<rect width="100%" height="100%" fill="#0b1120"/>',
              '<style>text{font-family:Inter,Segoe UI,Arial,sans-serif}.title{fill:#f4f7fb;font-size:25px;font-weight:700}.sub{fill:#9eacc3;font-size:14px}.label{fill:#d7e2f2;font-size:13px}.grid{stroke:#26344b}</style>',
              '<text x="70" y="48" class="title">Batching reduces packets, but timing can dominate collisions</text>',
-             '<text x="70" y="75" class="sub">One fixed-seed, one-hour synthetic workload; 3,000 tags, 60 poles, 8 channels</text>']
+             f'<text x="70" y="75" class="sub">{int(rows[0][9])} deterministic seeds; one-hour synthetic workload; 3,000 tags, 60 poles, 8 channels</text>']
     panels = [(70, "Offered load per channel (G)", [float(row[2]) for row in rows], 0.5, [0, .1, .2, .3, .4, .5], False),
               (550, "Packet loss in event simulation", [float(row[4]) for row in rows], 1.0, [0, .2, .4, .6, .8, 1.0], True)]
     for x0, title, vals, ymax, ticks, compare_poisson in panels:
@@ -142,9 +179,16 @@ def write_figure(path: Path, rows: list[list[object]]) -> None:
                 estimate_y = plot_y + (1 - estimate / ymax) * plot_h
                 parts.append(f'<line x1="{bar_x-7}" y1="{estimate_y:.1f}" x2="{bar_x+85}" y2="{estimate_y:.1f}" stroke="#ffbf69" stroke-width="3" stroke-dasharray="6 4"/>')
                 parts.append(f'<text x="{bar_x+39}" y="{estimate_y+17:.1f}" text-anchor="middle" fill="#ffcf8b" font-size="11">Poisson from G: {estimate*100:.1f}%</text>')
+                low_y = plot_y + (1 - float(rows[i][11]) / ymax) * plot_h
+                high_y = plot_y + (1 - float(rows[i][12]) / ymax) * plot_h
+                mid_x = bar_x + 39
+                parts += [f'<line x1="{mid_x}" y1="{high_y:.1f}" x2="{mid_x}" y2="{low_y:.1f}" stroke="#f4f7fb" stroke-width="2"/>',
+                          f'<line x1="{mid_x-6}" y1="{high_y:.1f}" x2="{mid_x+6}" y2="{high_y:.1f}" stroke="#f4f7fb" stroke-width="2"/>',
+                          f'<line x1="{mid_x-6}" y1="{low_y:.1f}" x2="{mid_x+6}" y2="{low_y:.1f}" stroke="#f4f7fb" stroke-width="2"/>']
         parts.append(f'<line x1="{plot_x}" y1="{plot_y}" x2="{plot_x}" y2="{plot_y+plot_h}" stroke="#61718b"/>')
         parts.append(f'<line x1="{plot_x}" y1="{plot_y+plot_h}" x2="{plot_x+plot_w}" y2="{plot_y+plot_h}" stroke="#61718b"/>')
-    parts.append('<text x="70" y="520" fill="#9eacc3" font-size="12">Gold dashed marks on the right show 1−exp(−2G). The periodic batched case violates its Poisson-arrival premise; its large gap is a schedule-burst warning, not a deployment prediction.</text>')
+    parts.append('<text x="70" y="505" fill="#9eacc3" font-size="12">Bars show the mean; whiskers span the 2.5th–97.5th percentiles across seeded runs. This is run variability under assumed inputs, not parameter uncertainty.</text>')
+    parts.append('<text x="70" y="525" fill="#9eacc3" font-size="12">Gold dashed marks show 1−exp(−2G). Periodic batches violate the Poisson premise; the gap is a schedule-sensitivity warning, not a deployment prediction.</text>')
     parts.append('</svg>')
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text("\n".join(parts), encoding="utf-8")
@@ -155,21 +199,42 @@ def main() -> None:
     parser.add_argument("--output-dir", type=Path, default=ROOT)
     args = parser.parse_args()
     cfg = json.loads((ROOT / "configs" / "traffic_scenario.json").read_text(encoding="utf-8"))
-    rng = random.Random(cfg["seed"])
-    baseline = packets_baseline(cfg, rng)
-    batched = packets_batched(cfg, rng)
+    replications = int(cfg.get("replications", 1))
+    if replications < 1:
+        raise ValueError("replications must be at least 1")
+    run_records: dict[str, list[list[object]]] = {
+        "Single arrival + raw per-pole ID heartbeat": [],
+        "15 s chunks + 64 B per-pole Bloom heartbeat": [],
+    }
+    replication_rows: list[list[object]] = []
+    for replication in range(replications):
+        # Separate deterministic streams keep the two workload generators from
+        # depending on how many random values the other scenario consumes.
+        for scenario_index, (name, generator) in enumerate((
+            ("Single arrival + raw per-pole ID heartbeat", packets_baseline),
+            ("15 s chunks + 64 B per-pole Bloom heartbeat", packets_batched),
+        )):
+            run_seed = cfg["seed"] + replication * 2 + scenario_index
+            packets = generator(cfg, random.Random(run_seed))
+            row = summarize(name, packets, cfg["channels"], cfg["duration_seconds"])
+            run_records[name].append(row)
+            replication_rows.append([name, replication + 1, run_seed, *row[1:]])
     out = args.output_dir.resolve() / "results"
     out.mkdir(parents=True, exist_ok=True)
-    rows = [summarize("Single arrival + raw per-pole ID heartbeat", baseline, cfg["channels"], cfg["duration_seconds"]),
-            summarize("15 s chunks + 64 B per-pole Bloom heartbeat", batched, cfg["channels"], cfg["duration_seconds"])]
+    rows = [summarize_replications(name, runs, cfg["duration_seconds"])
+            for name, runs in run_records.items()]
     with (out / "illustrative_traffic_simulation.csv").open("w", newline="", encoding="utf-8") as stream:
         writer = csv.writer(stream)
-        writer.writerow(["scenario", "packets", "simulated_offered_load_per_channel", "packets_involved_in_collision", "simulated_packet_loss", "poisson_loss_from_mean_load", "simulated_pdr", "duration_seconds", "status"])
+        writer.writerow(["scenario", "mean_packets_per_run", "mean_offered_load_per_channel", "mean_packets_involved_in_collision", "mean_simulated_packet_loss", "mean_poisson_loss_from_mean_load", "mean_simulated_pdr", "duration_seconds", "status", "replications", "run_loss_standard_deviation", "run_loss_p2_5", "run_loss_p97_5"])
         writer.writerows(rows)
+    with (out / "illustrative_traffic_replications.csv").open("w", newline="", encoding="utf-8") as stream:
+        writer = csv.writer(stream)
+        writer.writerow(["scenario", "replication", "seed", "packets", "offered_load_per_channel", "packets_involved_in_collision", "simulated_packet_loss", "poisson_loss_from_mean_load", "simulated_pdr", "duration_seconds", "status"])
+        writer.writerows(replication_rows)
     write_figure(args.output_dir.resolve() / "figures" / "traffic_simulation.svg", rows)
     for row in rows:
         print(f"{row[0]}: n={row[1]}, G/channel={row[2]}, simulated loss={float(row[4]):.2%}, Poisson-from-G={float(row[5]):.2%}, PDR={float(row[6]):.2%}")
-    print("Illustrative workload only; assumptions are in configs/traffic_scenario.json and are not shrine traffic measurements.")
+    print(f"Illustrative workload only; {replications} deterministic seeds. Percentiles describe run-to-run spread under the configured assumptions, not input-parameter uncertainty or shrine traffic measurements.")
 
 
 if __name__ == "__main__":
