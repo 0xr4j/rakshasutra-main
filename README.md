@@ -32,7 +32,7 @@ The proposal is motivated by crowded pilgrimage routes where cellular coverage o
 | See the full calculation inputs | [Claim inputs](configs/claims.json) |
 | Browse every output | [Results](results/) · [Figures](figures/) |
 
-A more visual project guide is in [docs/index.html](docs/index.html). The repository also includes a GitHub Pages workflow; publishing requires Pages to be enabled in repository settings.
+A more visual project guide is in [docs/index.html](docs/index.html). To publish it, enable GitHub Pages in **Settings → Pages**, select **GitHub Actions** as the source, then run **Deploy project site** from the Actions tab. Deployment is manual until configured. This repository is currently private; access to a published Pages site depends on your GitHub plan and visibility settings.
 
 ## What is in this repository
 
