@@ -1,11 +1,5 @@
 name: Deploy project site
 on:
-  push:
-    branches: [main]
-    paths:
-      - "docs/**"
-      - "figures/hero.svg"
-      - ".github/workflows/pages.yml"
   workflow_dispatch:
 permissions:
   contents: read
@@ -25,8 +19,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Configure Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
