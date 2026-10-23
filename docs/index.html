@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f3f0eb">
+<title>Rakshasutra — a breadcrumb, not a blue dot</title>
+<meta name="description" content="An evidence-first research project exploring BLE-to-LoRaWAN checkpoint observations for pilgrim safety in cellular-denied environments.">
+<style>
+:root{--ink:#24172b;--plum:#684a78;--violet:#392644;--gold:#d39a26;--coral:#c96560;--blue:#477b8a;--paper:#f3f0eb;--white:#fffdf9;--muted:#716976;--line:#ddd5df;--max:1180px;--sans:Inter,"Segoe UI",Arial,sans-serif;--serif:"Cormorant Garamond",Georgia,serif;--mono:"JetBrains Mono",Consolas,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:86px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}img{max-width:100%}.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}.skip{position:absolute;top:-80px;left:16px;background:var(--white);padding:10px;z-index:9}.skip:focus{top:12px}.nav{position:sticky;top:0;z-index:5;background:rgba(243,240,235,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.navin{height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-weight:850;text-decoration:none;letter-spacing:-.04em;color:var(--violet)}.brand i{display:inline-block;width:10px;height:10px;background:var(--gold);border-radius:50%;margin-right:9px}.links{display:flex;gap:23px;font-size:13px;font-weight:650}.links a{text-decoration:none;color:var(--muted)}.links a:hover{color:var(--plum)}.navcta{border:1px solid var(--violet);border-radius:999px;padding:8px 15px;text-decoration:none;font-size:13px;font-weight:700}
+.hero{padding:72px 0 62px;position:relative;overflow:hidden}.eyebrow,.kicker{font:700 11px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#806116}.hero h1{max-width:850px;font-size:clamp(56px,9.7vw,128px);line-height:.86;letter-spacing:-.085em;margin:24px 0 20px;font-weight:850}.hero h1 em{font:italic 600 1.02em/1 var(--serif);letter-spacing:-.045em;color:var(--plum)}.lead{max-width:690px;font-size:clamp(18px,2vw,22px);color:#514957;line-height:1.55}.actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 38px}.button{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:12px 19px;text-decoration:none;font-size:14px;font-weight:750}.button.dark{background:var(--violet);color:white}.button.light{border:1px solid #cfc5d4;background:#fffdf9}.button:hover{transform:translateY(-2px)}.heroart{display:block;width:100%;border-radius:26px;box-shadow:0 22px 55px #34213d18}.stamps{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.stamp{border:1px solid var(--line);background:#fffdf98c;border-radius:999px;padding:6px 11px;color:#5c5361;font-size:11px;font-weight:650}.stamp strong{color:var(--violet)}
+.band{background:var(--violet);color:#f8f3eb;padding:18px 0}.bandin{display:flex;justify-content:space-between;align-items:center;gap:20px}.band b{font-size:12px;text-transform:uppercase;letter-spacing:.1em}.band span{color:#d8c9df;font-size:13px}
+section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.45fr;gap:35px;align-items:start;margin-bottom:38px}.sectionhead .kicker{padding-top:11px}.sectionhead h2{font-size:clamp(35px,6.5vw,76px);line-height:.95;letter-spacing:-.065em;margin:0}.sectionhead h2 em{font:italic 600 1.02em var(--serif);color:var(--plum)}.sectionhead p{grid-column:2;margin:0;color:var(--muted);max-width:690px}
+.cols{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:25px;min-height:210px}.num{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#eee6f1;color:var(--plum);font:700 12px var(--mono)}.card h3{font-size:21px;line-height:1.15;letter-spacing:-.035em;margin:25px 0 9px}.card p{margin:0;color:var(--muted);font-size:14px}.card small{display:block;margin-top:16px;font:600 10px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:#8a7b8c}
+.flow{background:#ebe7ef;border-radius:25px;padding:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.step{position:relative;background:var(--white);border:1px solid #d8cfdd;border-radius:16px;padding:20px 17px;min-height:175px}.step:not(:last-child):after{content:"→";position:absolute;right:-15px;top:42%;z-index:2;background:var(--gold);color:var(--ink);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:900}.step .icon{font-size:25px;color:var(--plum)}.step b{display:block;margin:15px 0 3px}.step span{color:var(--muted);font-size:13px}.callout{margin-top:16px;padding:18px 21px;border-left:3px solid var(--gold);background:#f8f5ef;border-radius:0 13px 13px 0;color:#574f5c;font-size:14px}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{padding:28px;border-radius:22px;background:var(--white);border:1px solid var(--line)}.panel.dark{background:var(--violet);color:#f6f1f8;border-color:var(--violet)}.panel h3{font-size:23px;margin:0 0 8px;letter-spacing:-.04em}.panel p{color:var(--muted);font-size:14px}.panel.dark p{color:#d2c5d8}.metric{display:flex;align-items:baseline;gap:10px;margin:20px 0 5px}.metric strong{font:750 clamp(30px,5vw,54px)/1 var(--mono);letter-spacing:-.08em}.metric span{color:var(--muted);font-size:12px}.panel.dark .metric span{color:#d2c5d8}.barrow{display:grid;grid-template-columns:110px 1fr 50px;align-items:center;gap:12px;margin:16px 0;font-size:12px}.track{height:12px;background:#e9e2eb;border-radius:20px;overflow:hidden}.fill{height:100%;background:var(--coral);border-radius:20px}.fill.gold{background:var(--gold)}.mathnote{border-top:1px solid var(--line);margin-top:20px;padding-top:14px;font:12px/1.6 var(--mono);color:#665d6a}.dark .mathnote{border-color:#665271;color:#dfd4e2}.verdict{font-size:13px;padding:11px 14px;background:#f7ece6;border-radius:11px;color:#784e36;margin-top:16px}
+.tablewrap{overflow-x:auto;background:var(--white);border:1px solid var(--line);border-radius:18px}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:13px 16px;border-bottom:1px solid #eee9ef}th{font:700 10px var(--mono);text-transform:uppercase;letter-spacing:.08em;background:#eee8f0;color:#5c4965}tr:last-child td{border-bottom:0}.label{display:inline-block;padding:4px 8px;border-radius:99px;background:#f3ead4;color:#745612;font:700 10px var(--mono);text-transform:uppercase}
+.repo{display:grid;grid-template-columns:1fr 1fr;gap:16px}.file{background:var(--white);border:1px solid var(--line);border-radius:17px;padding:19px}.file code{font:12px var(--mono);color:var(--plum)}.file p{margin:8px 0 0;font-size:13px;color:var(--muted)}
+.notice{background:#f5e9e6;border:1px solid #e6c7c1;border-radius:20px;padding:24px 27px}.notice h3{margin:0 0 8px;font-size:21px;color:#87443e}.notice p{margin:0;font-size:14px;color:#624d4a}.quote{margin:0;border-left:3px solid var(--gold);padding:5px 0 5px 20px;font:italic 26px/1.35 var(--serif);color:var(--plum)}
+.footer{background:#261930;color:#ece5ef;padding:42px 0 48px}.footgrid{display:flex;justify-content:space-between;gap:25px;align-items:flex-start}.footer p{margin:0;max-width:650px;color:#cbbfd0;font-size:13px}.footer a{color:#f4d98b}.footer small{font:10px var(--mono);color:#b1a2b8}
+@media(max-width:800px){.links{display:none}.sectionhead{grid-template-columns:1fr;gap:10px}.sectionhead p{grid-column:1}.cols{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.step:nth-child(2):after{display:none}.split,.repo{grid-template-columns:1fr}.hero{padding-top:54px}.bandin,.footgrid{align-items:flex-start;flex-direction:column}}@media(max-width:480px){.wrap{width:calc(100% - 30px)}.hero h1{font-size:59px}.flow{grid-template-columns:1fr}.step:after{display:none!important}.barrow{grid-template-columns:92px 1fr 44px}.heroart{border-radius:15px}section{padding:68px 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="nav"><div class="wrap navin"><a class="brand" href="#top"><i></i>RAKSHASUTRA</a><nav class="links" aria-label="Main navigation"><a href="#idea">The idea</a><a href="#evidence">Evidence</a><a href="#audit">Open questions</a><a href="#repo">Repository</a></nav><a class="navcta" href="https://github.com/0xr4j/rakshasutra-main">View project ↗</a></div></header>
+<main id="main">
+<div id="top" class="hero"><div class="wrap">
+<div class="eyebrow">A research engineering project · India · 2026</div>
+<h1>A breadcrumb,<br><em>not a blue dot.</em></h1>
+<p class="lead">Rakshasutra explores whether simple radio checkpoints can help locate the last known area of a pilgrim in crowded places where phones or mobile networks may not be dependable.</p>
+<div class="actions"><a class="button dark" href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_open.pdf">Read the supplied paper <span>↗</span></a><a class="button light" href="https://github.com/0xr4j/rakshasutra-main/tree/main/docs">Read the claim audit <span>↗</span></a></div>
+<img class="heroart" src="../figures/hero.svg" alt="Proposed flow from a BLE wristband through a smart pole and LoRaWAN gateway to an authorized server lookup. It records a last-heard checkpoint, not continuous GPS.">
+<div class="stamps"><span class="stamp"><strong>Proposal</strong> · not deployed</span><span class="stamp"><strong>Analysis</strong> · reproducible arithmetic</span><span class="stamp"><strong>Simulation</strong> · synthetic workload</span></div>
+</div></div>
+<div class="band"><div class="wrap bandin"><b>Evidence before adjectives</b><span>Every result is labeled as a paper claim, calculation, assumption, or synthetic simulation.</span></div></div>
+<section id="idea"><div class="wrap">
+<div class="sectionhead"><div class="kicker">01 / Why this idea</div><h2>Four everyday gaps.<br><em>One checkpoint question.</em></h2><p>At a crowded shrine, a phone-based map may be unavailable or unwelcome. The proposed system asks a narrower question: “Which installed pole heard this band most recently?”</p></div>
+<div class="cols">
+<article class="card"><div class="num">01</div><h3>Phone dependence</h3><p>Consumer trackers often depend on nearby participating phones and a working network path. This proposal places fixed receivers along selected routes.</p><small>Design motivation · check deployment assumptions</small></article>
+<article class="card"><div class="num">02</div><h3>Gate-only reads</h3><p>Passive RFID can be useful at a reader gate. A checkpoint network would aim to add observations between entry and exit points.</p><small>Concept comparison · not a universal RFID limitation</small></article>
+<article class="card"><div class="num">03</div><h3>Signal shadows</h3><p>Metal structures and dense crowds can weaken radio links. The paper proposes pole placement and antenna choices; the repo does not contain a site survey.</p><small>Open RF question · field measurements needed</small></article>
+<article class="card"><div class="num">04</div><h3>Restricted phone use</h3><p>Some queues or sanctum areas restrict phones. A wearable might still send a short signal, subject to local rules and consent.</p><small>Context-specific · verify with venue policy</small></article>
+<article class="card"><div class="num">?</div><h3>The villain: blind spots</h3><p>A band can only be “last heard” where a receiver is installed and the radio link succeeds. Between poles, the system has uncertainty.</p><small>One sentence to keep: last-heard is not live position.</small></article>
+<article class="card"><div class="num">→</div><h3>Keep the claim small</h3><p>This is a proposed checkpoint aid for authorized staff. It is not a substitute for emergency operations, GPS, or human care.</p><small>Research concept · not a safety product</small></article>
+</div>
+</div></section>
+<section style="background:#ebe7ef" id="flow"><div class="wrap">
+<div class="sectionhead"><div class="kicker">02 / The proposed path</div><h2>Four pieces.<br><em>One radio breadcrumb.</em></h2><p>The concept separates the short wristband-to-pole radio hop from the longer pole-to-server backhaul. Each hop has to be built and tested.</p></div>
+<div class="flow">
+<div class="step"><div class="icon">◉</div><b>Wearable band</b><span>Broadcasts a short, changing BLE identifier. No coordinates are created by the band.</span></div>
+<div class="step"><div class="icon">⌁</div><b>Smart pole</b><span>Listens nearby and records a time-stamped checkpoint observation when reception succeeds.</span></div>
+<div class="step"><div class="icon">⇢</div><b>Gateway</b><span>Relays compact pole messages over the proposed LoRaWAN backhaul.</span></div>
+<div class="step"><div class="icon">▤</div><b>Authorized lookup</b><span>A backend can resolve an observation for an approved safety workflow, under access controls.</span></div>
+</div>
+<div class="callout"><strong>Privacy promise to test, not an accomplished property:</strong> rotating IDs can reduce simple persistent tracking, but metadata, cryptographic details, retention, access control, and real-world privacy law still need independent review.</div>
+</div></section>
+<section id="evidence"><div class="wrap">
+<div class="sectionhead"><div class="kicker">03 / What the numbers say</div><h2>Two views of load.<br><em>Do not mix them up.</em></h2><p>The manuscript’s table and this repository’s synthetic event simulation answer different questions. One recomputes a formula; the other explores one chosen schedule.</p></div>
+<div class="split">
+<article class="panel"><span class="label">Paper table · arithmetic check</span><h3>Pure-ALOHA at 3,000 tags</h3><p>Using the manuscript’s offered-load entries and P(loss) = 1 − exp(−2G):</p>
+<div class="barrow"><span>Baseline G=.390</span><div class="track"><div class="fill" style="width:54.2%"></div></div><b>54.2%</b></div>
+<div class="barrow"><span>Proposed G=.086</span><div class="track"><div class="fill gold" style="width:15.8%"></div></div><b>15.8%</b></div>
+<div class="verdict">The G values imply a <strong>77.9% offered-load reduction</strong>. The paper’s abstract says 82.4%; reconcile before quoting the abstract figure.</div>
+<div class="mathnote">Recomputed from G copied from the paper. This verifies arithmetic only; it does not validate how G was derived.</div></article>
+<article class="panel dark"><span class="label">Repository model · synthetic workload</span><h3>Scheduling changed the story</h3><p>In the configured one-hour, 3,000-tag, 60-pole scenario over 40 deterministic seeds:</p>
+<div class="metric"><strong>56.7%</strong><span>baseline packet loss<br>single arrivals + raw heartbeat</span></div>
+<div class="metric"><strong>72.8%</strong><span>batched packet loss<br>15-second batch schedule</span></div>
+<div class="mathnote">Despite fewer packets, narrow periodic batch windows clustered transmissions. Under these explicit assumptions the batched case lost more packets. This is a schedule-sensitivity warning, not a shrine deployment prediction.</div></article>
+</div>
+<div class="callout"><strong>How to read the bars:</strong> figures above come from the checked-in CSVs. The first pair are paper-input arithmetic. The second pair are generated synthetic output. Neither is a field measurement.</div>
+</div></section>
+<section style="background:#fffdf9" id="audit"><div class="wrap">
+<div class="sectionhead"><div class="kicker">04 / Audit before sharing</div><h2>Strong research<br><em>keeps its questions visible.</em></h2><p>The manuscript and repository are not the same thing as a validated deployment. Here are the issues a careful reviewer should see first.</p></div>
+<div class="tablewrap"><table><thead><tr><th>Question</th><th>What the repository can say</th><th>Status</th></tr></thead><tbody>
+<tr><td>Airtime and ALOHA math</td><td>Selected calculations can be reproduced under stated inputs; traffic derivation and traces are not supplied.</td><td><span class="label">Partial check</span></td></tr>
+<tr><td>99.4% vehicle capture</td><td>Five opportunities require at least 64.1% independent reception per advert; no measured per-ad reception probability is supplied.</td><td><span class="label">Unverified</span></td></tr>
+<tr><td>Battery life and pulse load</td><td>Capacity/current arithmetic is idealized. The 100 µF capacitor-only pulse check shows 32 V droop for the stated 32 mA × 100 ms case.</td><td><span class="label">Needs bench test</span></td></tr>
+<tr><td>Privacy and security</td><td>Rotating 32-bit labels have collision risk and do not by themselves establish unlinkability or secure key handling.</td><td><span class="label">Needs review</span></td></tr>
+<tr><td>Deployment evidence</td><td>No raw field traces, device logs, site survey, or deployment record accompany the supplied paper.</td><td><span class="label">Not established</span></td></tr>
+</tbody></table></div>
+</div></section>
+<section id="repo"><div class="wrap">
+<div class="sectionhead"><div class="kicker">05 / Explore the files</div><h2>Follow the evidence<br><em>back to its source.</em></h2><p>Start with the manuscript, inspect the assumptions, then reproduce selected calculations from the repository root.</p></div>
+<div class="repo">
+<div class="file"><code>paper/rakshasutra_open.pdf</code><p>Author-supplied paper retained as the source under review.</p></div>
+<div class="file"><code>configs/claims.json</code><p>Manuscript inputs transcribed with explicit evidence notes.</p></div>
+<div class="file"><code>simulation/audit.py</code><p>Deterministic arithmetic checks and plots; standard library only.</p></div>
+<div class="file"><code>simulation/traffic_simulation.py</code><p>Separate event-driven synthetic scenario with 40 fixed seeds.</p></div>
+<div class="file"><code>results/</code><p>CSV outputs generated from the scripts, not field telemetry.</p></div>
+<div class="file"><code>docs/claim-audit.md</code><p>Claim-by-claim limitations, mismatches, and questions for the next draft.</p></div>
+</div>
+<div class="actions"><a class="button dark" href="https://github.com/0xr4j/rakshasutra-main">Open repository ↗</a><a class="button light" href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/reproduction.md">Reproduce the checks ↗</a></div>
+<div class="notice"><h3>Safety, privacy, and intended use</h3><p>This is an early research concept and analysis set. It is not a validated tracking product, emergency-response system, or safety-certified design. Do not rely on it for real-world safeguarding. Any prototype or deployment requires consent design, privacy/legal review, security testing, RF and battery testing, venue approval, and supervised operational trials.</p></div>
+</div></section>
+</main>
+<footer class="footer"><div class="wrap footgrid"><div><b>RAKSHASUTRA / SURAKSHANET</b><p>A proposed last-heard checkpoint architecture for pilgrim safety. This repository audits selected claims; it does not certify the manuscript’s outcomes.</p><p style="margin-top:12px"><a href="https://github.com/0xr4j/rakshasutra-main">Source repository</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_open.pdf">Supplied paper</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/claim-audit.md">Full claim audit</a></p></div><div><small>AUTHOR-SUPPLIED PAPER · SELECTED CALCULATIONS · SYNTHETIC SIMULATION<br>NO FIELD DEPLOYMENT DATA SUPPLIED</small></div></div></footer>
+</body></html>
