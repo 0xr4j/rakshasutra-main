@@ -1,11 +1,5 @@
 name: Deploy project site
 on:
-  push:
-    branches: [main]
-    paths:
-      - "docs/**"
-      - "figures/hero.svg"
-      - ".github/workflows/pages.yml"
   workflow_dispatch:
 permissions:
   contents: read
