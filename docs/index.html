@@ -137,13 +137,15 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 <div class="mathnote">Despite fewer packets, narrow periodic batch windows clustered transmissions. Under these explicit assumptions the batched case lost more packets. This is a schedule-sensitivity warning, not a shrine deployment prediction.</div></article>
 </div>
 <div class="callout"><strong>How to read the bars:</strong> figures above come from the checked-in CSVs. The first pair are paper-input arithmetic. The second pair are generated synthetic output. Neither is a field measurement.</div>
+<figure class="panel" style="margin:24px 0 0"><img src="jitter_sensitivity.svg" alt="Synthetic event-simulation packet loss falls as the maximum random delay before batch transmission increases, across four jitter settings."><figcaption style="padding:14px 4px 0;color:var(--muted);font-size:13px"><strong>Schedule sensitivity, synthetic only.</strong> Forty fixed-seed runs per setting; the mean load is unchanged while batch timing is spread over a wider interval. This is not field data or a validated network forecast. <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/results/jitter_sensitivity.csv">View the CSV</a>.</figcaption></figure>
 </div></section>
 <section style="background:#fffdf9" id="audit"><div class="wrap">
 <div class="sectionhead"><div class="kicker">04 / Audit before sharing</div><h2>Strong research<br><em>keeps its questions visible.</em></h2><p>The manuscript and repository are not the same thing as a validated deployment. Here are the issues a careful reviewer should see first.</p></div>
 <div class="tablewrap"><table><thead><tr><th>Question</th><th>What the repository can say</th><th>Status</th></tr></thead><tbody>
 <tr><td>Airtime and ALOHA math</td><td>Selected calculations can be reproduced under stated inputs; traffic derivation and traces are not supplied.</td><td><span class="label">Partial check</span></td></tr>
 <tr><td>99.4% vehicle capture</td><td>Five opportunities require at least 64.1% independent reception per advert; no measured per-ad reception probability is supplied.</td><td><span class="label">Unverified</span></td></tr>
-<tr><td>Battery life and pulse load</td><td>Capacity/current arithmetic is idealized. The 100 µF capacitor-only pulse check shows 32 V droop for the stated 32 mA × 100 ms case.</td><td><span class="label">Needs bench test</span></td></tr>
+<tr><td>Battery life and pulse load</td><td>The stated 620/434 mAh capacities and weighted 17.5983 µA current yield 48.23/33.76 ideal months, versus paper claims of 14.2/11.1. The 100 µF capacitor-only estimate gives 32 V droop for 32 mA × 100 ms.</td><td><span class="label">Arithmetic mismatch</span></td></tr>
+<tr><td>Latency claims</td><td>The abstract says &lt;4 s, the system section says 2.5–5.0 s, and the conclusion says &lt;5 s. A defined measurement protocol and raw trials are absent.</td><td><span class="label">Inconsistent</span></td></tr>
 <tr><td>Privacy and security</td><td>Rotating 32-bit labels have collision risk and do not by themselves establish unlinkability or secure key handling.</td><td><span class="label">Needs review</span></td></tr>
 <tr><td>Deployment evidence</td><td>No raw field traces, device logs, site survey, or deployment record accompany the supplied paper.</td><td><span class="label">Not established</span></td></tr>
 </tbody></table></div>
@@ -157,6 +159,9 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 <div class="file"><code>simulation/traffic_simulation.py</code><p>Separate event-driven synthetic scenario with 40 fixed seeds.</p></div>
 <div class="file"><code>results/</code><p>CSV outputs generated from the scripts, not field telemetry.</p></div>
 <div class="file"><code>docs/claim-audit.md</code><p>Claim-by-claim limitations, mismatches, and questions for the next draft.</p></div>
+<div class="file"><code>results/paper_reconciliation.csv</code><p>Paper-reported numbers beside transparent recalculations and evidence labels.</p></div>
+<div class="file"><code>results/jitter_sensitivity.csv</code><p>Run-level synthetic benchmark summary across four batch-jitter settings.</p></div>
+<div class="file"><code>tests/</code><p>Small deterministic unit tests and explicitly synthetic edge-case fixtures.</p></div>
 </div>
 <div class="actions"><a class="button dark" href="https://github.com/0xr4j/rakshasutra-main">Open repository ↗</a><a class="button light" href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/reproduction.md">Reproduce the checks ↗</a></div>
 <div class="notice"><h3>Safety, privacy, and intended use</h3><p>This is an early research concept and analysis set. It is not a validated tracking product, emergency-response system, or safety-certified design. Do not rely on it for real-world safeguarding. Any prototype or deployment requires consent design, privacy/legal review, security testing, RF and battery testing, venue approval, and supervised operational trials.</p></div>
