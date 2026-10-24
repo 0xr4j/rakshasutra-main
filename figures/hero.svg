@@ -8,8 +8,8 @@
 </defs>
 <rect width="1600" height="680" rx="36" fill="url(#bg)"/><rect width="1600" height="680" rx="36" fill="url(#grid)"/>
 <text x="94" y="113" fill="#8b6517" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="5">RAKSHASUTRA · RESEARCH CONCEPT</text>
-<text x="92" y="220" fill="#24172b" font-family="Arial,sans-serif" font-size="68" font-weight="800" letter-spacing="-3">A breadcrumb,</text>
-<text x="92" y="296" fill="#6c4a7e" font-family="Georgia,serif" font-size="68" font-style="italic">not a blue dot.</text>
+<text x="92" y="220" fill="#24172b" font-family="Arial,sans-serif" font-size="68" font-weight="800" letter-spacing="-3">A last-heard</text>
+<text x="92" y="296" fill="#6c4a7e" font-family="Georgia,serif" font-size="68" font-style="italic">checkpoint, not live.</text>
 <text x="96" y="354" fill="#5d5662" font-family="Arial,sans-serif" font-size="23">Proposed BLE-to-LoRaWAN checkpoint observations</text>
 <text x="96" y="389" fill="#5d5662" font-family="Arial,sans-serif" font-size="23">for crowded places where phone connectivity may fail.</text>
 <g transform="translate(105 465)">

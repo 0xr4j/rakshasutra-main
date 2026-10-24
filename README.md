@@ -1,16 +1,27 @@
 <div align="center">
   <img src="figures/hero.svg" alt="Rakshasutra concept: a BLE wristband is heard by a smart pole, relayed through a gateway, and used for an authorized last-heard checkpoint lookup" width="100%">
   <h1>Rakshasutra · SurakshaNet</h1>
-  <p><strong>A breadcrumb, not a blue dot.</strong><br>
-  Research engineering for a proposed BLE-to-LoRaWAN checkpoint system.</p>
+  <p><strong>A last-heard checkpoint, not a live location.</strong><br>
+  Research engineering for a proposed BLE-wearable and LoRaWAN checkpoint architecture.</p>
   <p>
     <a href="https://0xr4j.github.io/rakshasutra-main/">Open the animated project site</a> ·
-    <a href="paper/rakshasutra_open.pdf">Read the supplied paper</a> ·
+    <a href="paper/rakshasutra_research_draft.pdf">Read the research draft</a> ·
+    <a href="paper/rakshasutra_open.pdf">View the original supplied PDF</a> ·
     <a href="docs/claim-audit.md">Claim-by-claim audit</a> ·
     <a href="docs/reproduction.md">Reproduce calculations</a> ·
     <a href="results/paper_reconciliation.csv">Paper-number reconciliation</a>
   </p>
 </div>
+
+**Project description:** Rakshasutra (SurakshaNet) is a proposed BLE-wearable and LoRaWAN checkpoint architecture for recording the most recent receiver observation along crowded pilgrim routes. This repository includes the supplied manuscript, reproducible engineering calculations, a selected claim audit, and explicitly synthetic traffic simulations. It contains no field dataset or deployment evidence; the calculations and simulations do not establish radio range, battery life, privacy guarantees, or safety efficacy.
+
+The reader copy at [`paper/rakshasutra_research_draft.pdf`](paper/rakshasutra_research_draft.pdf) replaces the IEEE journal masthead with “Rakshasutra | Research Draft.” The original supplied PDF remains unchanged and is separately linked above.
+
+## Project overview
+
+Rakshasutra (SurakshaNet) is a proposed BLE-wearable and LoRaWAN checkpoint architecture for crowded pilgrim routes where smartphone access or cellular service may be limited. A wearable broadcasts a short BLE identifier; fixed receivers at smart poles may record time-stamped observations and forward compact records through gateways to an authorized server workflow. The intended output is the most recent pole observation that successfully received the wearable—not a continuous GPS location.
+
+The supplied manuscript explores rotating pseudonyms, pole-side event filtering, compact presence heartbeats, and caregiver-separation alerts. This repository preserves the manuscript and provides reproducible calculations, a selected claim audit, and explicitly synthetic traffic simulations. It contains no raw field dataset, hardware logs, complete test protocol, or deployment record. These calculations and simulations do not establish coverage, battery runtime, privacy guarantees, or safety efficacy; those require implementation and supervised field validation.
 
 > [!IMPORTANT]
 > **Evidence status:** This repository preserves an author-supplied manuscript and checks selected calculations. It contains no supplied raw field dataset, hardware logs, deployment record, or complete experimental protocol. The simulation is synthetic and assumption-driven. None of these materials establish field performance, safety, or deployment readiness.
@@ -27,7 +38,8 @@ The proposal is motivated by crowded pilgrimage routes where cellular coverage o
 
 | If you want to… | Open |
 |---|---|
-| Understand the proposal | [Supplied paper PDF](paper/rakshasutra_open.pdf) |
+| Read the public-facing manuscript copy | [Research draft PDF](paper/rakshasutra_research_draft.pdf) |
+| Compare with the original supplied file | [Original PDF](paper/rakshasutra_open.pdf) |
 | See which claims do and do not check out | [Selected claim audit](docs/claim-audit.md) |
 | Rerun the calculations | [Reproduction guide](docs/reproduction.md) |
 | Inspect the chosen synthetic workload | [Scenario inputs](configs/traffic_scenario.json) |
@@ -41,7 +53,8 @@ The [interactive project site](https://0xr4j.github.io/rakshasutra-main/) is dep
 
 ## What is in this repository
 
-- `paper/rakshasutra_open.pdf` — the supplied nine-page manuscript, preserved as the source under review.
+- `paper/rakshasutra_research_draft.pdf` — nine-page reader copy with the unsupported IEEE journal masthead removed; article content preserved.
+- `paper/rakshasutra_open.pdf` — original supplied nine-page PDF, preserved unchanged as the source under review.
 - `simulation/audit.py` — standard-library Python calculations for LoRa airtime, pure-ALOHA loss, Bloom-filter false positives, BLE capture assumptions, pseudonym collisions, and idealized battery arithmetic.
 - `simulation/traffic_simulation.py` — a separate single-cell synthetic packet-overlap simulation with deterministic seeds.
 - `configs/` — transcribed paper values and explicit simulation assumptions.
@@ -112,6 +125,6 @@ Any prototype or deployment requires informed consent and access-control design,
 
 ## Citation
 
-Jha, Raj. *Rakshasutra: A Privacy-Preserving, Edge-Filtered Hybrid BLE–LoRaWAN Architecture for Real-Time Crowd Localization in Cellular-Denied Mountain Pilgrimages*. Author-supplied preprint, October 2026, 9 pages.
+Jha, Raj. *Rakshasutra: A Privacy-Preserving, Edge-Filtered Hybrid BLE–LoRaWAN Architecture for Real-Time Crowd Localization in Cellular-Denied Mountain Pilgrimages*. Author-supplied manuscript, October 2026, 9 pages.
 
 This repository preserves the supplied PDF and audits selected calculations; it does not certify the manuscript’s reported evaluations. No open-source license is included. All rights in the manuscript remain with its author unless a license is added explicitly.

@@ -4,8 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f3f0eb">
-<title>Rakshasutra — a breadcrumb, not a blue dot</title>
-<meta name="description" content="An evidence-first research project exploring BLE-to-LoRaWAN checkpoint observations for pilgrim safety in cellular-denied environments.">
+<title>Rakshasutra | A last-heard checkpoint, not a live location</title>
+<meta name="description" content="Rakshasutra is a proposed BLE-wearable and LoRaWAN checkpoint architecture for recording the most recent receiver observation along crowded pilgrim routes. Field performance has not been established.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Rakshasutra | A last-heard checkpoint, not a live location">
+<meta property="og:description" content="A proposed BLE-wearable and LoRaWAN checkpoint architecture. This repository contains reproducible engineering checks and synthetic traffic simulations, not field validation.">
+<meta property="og:url" content="https://0xr4j.github.io/rakshasutra-main/">
+<meta name="twitter:card" content="summary">
 <style>
 :root{--ink:#24172b;--plum:#684a78;--violet:#392644;--gold:#d39a26;--coral:#c96560;--blue:#477b8a;--paper:#f3f0eb;--white:#fffdf9;--muted:#716976;--line:#ddd5df;--max:1180px;--sans:Inter,"Segoe UI",Arial,sans-serif;--serif:"Cormorant Garamond",Georgia,serif;--mono:"JetBrains Mono",Consolas,monospace}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:86px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}a{color:inherit}img{max-width:100%}.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}.skip{position:absolute;top:-80px;left:16px;background:var(--white);padding:10px;z-index:9}.skip:focus{top:12px}.nav{position:sticky;top:0;z-index:5;background:rgba(243,240,235,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}.navin{height:68px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-weight:850;text-decoration:none;letter-spacing:-.04em;color:var(--violet)}.brand i{display:inline-block;width:10px;height:10px;background:var(--gold);border-radius:50%;margin-right:9px}.links{display:flex;gap:23px;font-size:13px;font-weight:650}.links a{text-decoration:none;color:var(--muted)}.links a:hover{color:var(--plum)}.navcta{border:1px solid var(--violet);border-radius:999px;padding:8px 15px;text-decoration:none;font-size:13px;font-weight:700}
@@ -75,9 +80,9 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 <main id="main">
 <div id="top" class="hero"><div class="wrap">
 <div class="eyebrow">A research engineering project · India · 2026</div>
-<h1>A breadcrumb,<br><em>not a blue dot.</em></h1>
-<p class="lead">Rakshasutra explores whether simple radio checkpoints can help locate the last known area of a pilgrim in crowded places where phones or mobile networks may not be dependable.</p>
-<div class="actions"><a class="button dark" href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_open.pdf">Read the supplied paper <span>↗</span></a><a class="button light" href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/claim-audit.md">Read the claim audit <span>↗</span></a></div>
+<h1>A last-heard<br><em>checkpoint.</em></h1>
+<p class="lead">Rakshasutra (SurakshaNet) is a proposed BLE-wearable and LoRaWAN checkpoint architecture for recording the most recent receiver observation along crowded pilgrim routes. It describes a checkpoint observation, not a live GPS location.</p>
+<div class="actions"><a class="button dark" href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_research_draft.pdf">Read the research draft <span>↗</span></a><a class="button light" href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/claim-audit.md">Review evidence and claims <span>↗</span></a></div>
 <img class="heroart" src="hero.svg" alt="Proposed flow from a BLE wristband through a smart pole and LoRaWAN gateway to an authorized server lookup. It records a last-heard checkpoint, not continuous GPS.">
 <div class="stamps"><span class="stamp"><strong>Proposal</strong> · not deployed</span><span class="stamp"><strong>Analysis</strong> · reproducible arithmetic</span><span class="stamp"><strong>Simulation</strong> · synthetic workload</span></div>
 </div></div>
@@ -153,7 +158,8 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 <section id="repo"><div class="wrap">
 <div class="sectionhead"><div class="kicker">05 / Explore the files</div><h2>Follow the evidence<br><em>back to its source.</em></h2><p>Start with the manuscript, inspect the assumptions, then reproduce selected calculations from the repository root.</p></div>
 <div class="repo">
-<div class="file"><code>paper/rakshasutra_open.pdf</code><p>Author-supplied paper retained as the source under review.</p></div>
+<a class="file" href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_research_draft.pdf"><code>paper/rakshasutra_research_draft.pdf</code><p>Reader copy with the unsupported IEEE journal masthead removed; article content is preserved.</p></a>
+<a class="file" href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_open.pdf"><code>paper/rakshasutra_open.pdf</code><p>Original supplied PDF, preserved unchanged as the source under review.</p></a>
 <div class="file"><code>configs/claims.json</code><p>Manuscript inputs transcribed with explicit evidence notes.</p></div>
 <div class="file"><code>simulation/audit.py</code><p>Deterministic arithmetic checks and plots; standard library only.</p></div>
 <div class="file"><code>simulation/traffic_simulation.py</code><p>Separate event-driven synthetic scenario with 40 fixed seeds.</p></div>
@@ -167,7 +173,7 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 <div class="notice"><h3>Safety, privacy, and intended use</h3><p>This is an early research concept and analysis set. It is not a validated tracking product, emergency-response system, or safety-certified design. Do not rely on it for real-world safeguarding. Any prototype or deployment requires consent design, privacy/legal review, security testing, RF and battery testing, venue approval, and supervised operational trials.</p></div>
 </div></section>
 </main>
-<footer class="footer"><div class="wrap footgrid"><div><b>RAKSHASUTRA / SURAKSHANET</b><p>A proposed last-heard checkpoint architecture for pilgrim safety. This repository audits selected claims; it does not certify the manuscript’s outcomes.</p><p style="margin-top:12px"><a href="https://github.com/0xr4j/rakshasutra-main">Source repository</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_open.pdf">Supplied paper</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/claim-audit.md">Full claim audit</a></p></div><div><small>AUTHOR-SUPPLIED PAPER · SELECTED CALCULATIONS · SYNTHETIC SIMULATION<br>NO FIELD DEPLOYMENT DATA SUPPLIED</small></div></div></footer>
+<footer class="footer"><div class="wrap footgrid"><div><b>RAKSHASUTRA / SURAKSHANET</b><p>A proposed last-heard checkpoint architecture. This repository audits selected claims; it does not establish field performance or certify the manuscript’s reported outcomes.</p><p style="margin-top:12px"><a href="https://github.com/0xr4j/rakshasutra-main">Source repository</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_research_draft.pdf">Research draft</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_open.pdf">Original supplied PDF</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/claim-audit.md">Full claim audit</a></p></div><div><small>AUTHOR-SUPPLIED MANUSCRIPT · SELECTED CALCULATIONS · SYNTHETIC SIMULATION<br>NO FIELD DEPLOYMENT DATA SUPPLIED</small></div></div></footer>
 
 <script>
 (() => {
