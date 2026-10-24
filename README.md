@@ -4,6 +4,7 @@
   <p><strong>A breadcrumb, not a blue dot.</strong><br>
   Research engineering for a proposed BLE-to-LoRaWAN checkpoint system.</p>
   <p>
+    <a href="https://0xr4j.github.io/rakshasutra-main/">Open the animated project site</a> ·
     <a href="paper/rakshasutra_open.pdf">Read the supplied paper</a> ·
     <a href="docs/claim-audit.md">Claim-by-claim audit</a> ·
     <a href="docs/reproduction.md">Reproduce calculations</a>
@@ -32,7 +33,7 @@ The proposal is motivated by crowded pilgrimage routes where cellular coverage o
 | See the full calculation inputs | [Claim inputs](configs/claims.json) |
 | Browse every output | [Results](results/) · [Figures](figures/) |
 
-A more visual project guide is in [docs/index.html](docs/index.html). To publish it, enable GitHub Pages in **Settings → Pages**, select **GitHub Actions** as the source, then run **Deploy project site** from the Actions tab. Deployment is manual until configured. This repository is currently private; access to a published Pages site depends on your GitHub plan and visibility settings.
+The [interactive project site](https://0xr4j.github.io/rakshasutra-main/) is deployed with GitHub Pages from `docs/`. GitHub Actions deploys automatically when `main` changes. The repository and site are public.
 
 ## What is in this repository
 
