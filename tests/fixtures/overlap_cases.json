@@ -1,0 +1,26 @@
+{
+  "provenance": "Hand-authored synthetic unit-test cases; not field data.",
+  "cases": [
+    {
+      "name": "non_overlapping_same_channel",
+      "channels": 1,
+      "duration_seconds": 10,
+      "packets": [[0.0, 1.0, 0], [1.1, 1.0, 0]],
+      "packets_in_collision": 0
+    },
+    {
+      "name": "overlapping_same_channel",
+      "channels": 1,
+      "duration_seconds": 10,
+      "packets": [[0.0, 1.0, 0], [0.5, 1.0, 0]],
+      "packets_in_collision": 2
+    },
+    {
+      "name": "overlapping_different_channels",
+      "channels": 2,
+      "duration_seconds": 10,
+      "packets": [[0.0, 1.0, 0], [0.2, 1.0, 1]],
+      "packets_in_collision": 0
+    }
+  ]
+}
