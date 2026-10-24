@@ -1,0 +1,12 @@
+claim_id,manuscript_reported_value,recomputed_value_or_evidence,basis_and_provenance,assessment
+airtime_28_bytes,66.82 ms,66.816 ms,Calculated from stated SF7/BW/CR/preamble assumptions,Arithmetic reproduced; not a radio measurement
+airtime_77_bytes,138.50 ms,138.496 ms,Calculated from stated SF7/BW/CR/preamble assumptions,Arithmetic reproduced; not a radio measurement
+airtime_213_bytes,338.18 ms,338.176 ms,Calculated from stated SF7/BW/CR/preamble assumptions,Arithmetic reproduced; not a radio measurement
+aloha_baseline_loss_3000,54.2%,54.1594%,Calculated from manuscript G=0.390 at N=3000,Formula reproduced; offered-load derivation not established
+aloha_proposed_loss_3000,15.8%,15.8021%,Calculated from manuscript G=0.086 at N=3000,Formula reproduced; offered-load derivation not established
+offered_load_reduction_3000,82.4% (abstract),77.9487%,Calculated from Table IV G values 0.390 -> 0.086,Mismatch: Table IV implies 77.9%; reconcile manuscript
+battery_life_25c,14.2 months,48.23 months,Calculated from 620 mAh and 17.5983 uA weighted active/sleep current,Arithmetic mismatch; not a validated battery-life model
+battery_life_cold,11.1 months,33.76 months,Calculated from 434 mAh and 17.5983 uA weighted active/sleep current,Arithmetic mismatch; not a validated battery-life model
+ev_capture_20kmh,99.4% paper claim,5 minimum opportunities; 64.06% independent per-ad success required,Calculated from 4.50 s dwell and 0.80 s interval,Unverified: per-ad reception probability and independence are not measured
+field_results,Paper labels some results empirical,"No raw field dataset, device logs, or experimental protocol supplied",Repository input inventory,Not independently verifiable; no field data available
+
