@@ -7,7 +7,8 @@
     <a href="https://0xr4j.github.io/rakshasutra-main/">Open the animated project site</a> ·
     <a href="paper/rakshasutra_open.pdf">Read the supplied paper</a> ·
     <a href="docs/claim-audit.md">Claim-by-claim audit</a> ·
-    <a href="docs/reproduction.md">Reproduce calculations</a>
+    <a href="docs/reproduction.md">Reproduce calculations</a> ·
+    <a href="results/paper_reconciliation.csv">Paper-number reconciliation</a>
   </p>
 </div>
 
@@ -30,6 +31,9 @@ The proposal is motivated by crowded pilgrimage routes where cellular coverage o
 | See which claims do and do not check out | [Selected claim audit](docs/claim-audit.md) |
 | Rerun the calculations | [Reproduction guide](docs/reproduction.md) |
 | Inspect the chosen synthetic workload | [Scenario inputs](configs/traffic_scenario.json) |
+| See paper values beside recalculations | [Reconciliation CSV](results/paper_reconciliation.csv) |
+| Inspect schedule-jitter sensitivity | [Benchmark CSV](results/jitter_sensitivity.csv) · [Plot](figures/jitter_sensitivity.svg) |
+| Run the software checks | [Unit tests](tests/) |
 | See the full calculation inputs | [Claim inputs](configs/claims.json) |
 | Browse every output | [Results](results/) · [Figures](figures/) |
 
@@ -41,7 +45,8 @@ The [interactive project site](https://0xr4j.github.io/rakshasutra-main/) is dep
 - `simulation/audit.py` — standard-library Python calculations for LoRa airtime, pure-ALOHA loss, Bloom-filter false positives, BLE capture assumptions, pseudonym collisions, and idealized battery arithmetic.
 - `simulation/traffic_simulation.py` — a separate single-cell synthetic packet-overlap simulation with deterministic seeds.
 - `configs/` — transcribed paper values and explicit simulation assumptions.
-- `results/` — generated CSV outputs, including per-run records for the synthetic traffic model.
+- `results/` — generated CSV outputs, including the paper-number reconciliation and synthetic benchmark records.
+- `tests/` — deterministic arithmetic/reproducibility tests and labeled synthetic fixtures.
 - `figures/` — concept architecture and analytical or synthetic SVG plots.
 - `docs/claim-audit.md` — claim-by-claim findings and questions that remain open.
 - `docs/reproduction.md` — model definitions, exact commands, and output interpretation.
@@ -51,11 +56,13 @@ The [interactive project site](https://0xr4j.github.io/rakshasutra-main/) is dep
 Requires Python 3.10 or later. The scripts use only the Python standard library.
 
 ```bash
+python -m unittest discover -s tests -v
 python simulation/audit.py
 python simulation/traffic_simulation.py
+python simulation/sensitivity.py
 ```
 
-The audit script rewrites selected CSVs in `results/` and analytical plots in `figures/`. The traffic script runs the scenario described in `configs/traffic_scenario.json` and writes its summary, run-level CSV, and plot. These commands do **not** reproduce a shrine deployment or the manuscript’s raw experiment traces.
+The audit script rewrites selected CSVs in `results/` and analytical plots in `figures/`. The traffic script runs the scenario described in `configs/traffic_scenario.json` and writes its summary, run-level CSV, and plot. The sensitivity script repeats that synthetic workload across four batch-jitter settings. GitHub Actions runs the unit tests and regenerates all outputs before deploying the Pages site. These commands do **not** reproduce a shrine deployment or the manuscript’s raw experiment traces.
 
 ## A careful reading of the numbers
 
@@ -80,7 +87,7 @@ The batched case sends fewer packets, but this schedule emits them in narrow per
 
 - **BLE vehicle capture:** five opportunities require at least 64.1% independent reception probability per advertisement to reach the paper’s 99.4% aggregate claim. That per-ad probability is not measured in the supplied evidence.
 - **Rotating identifier:** the 32-bit birthday estimate for 3,000 tags is about 0.105% chance of at least one collision in one set under a uniform-random model. That estimate is not a complete privacy or linkability analysis.
-- **Battery arithmetic:** capacity/current estimates are ideal ceilings. They do not validate runtime under cold conditions, pulse loads, regulator losses, cutoff behavior, aging, or a real device duty cycle.
+- **Battery arithmetic:** using the paper’s stated 620/434 mAh capacities and the stated 17.5983 µA weighted current gives 48.23/33.76 ideal months, while the manuscript reports 14.2/11.1. This mismatch needs a corrected derivation; neither result validates runtime under cold conditions, pulse loads, regulator losses, cutoff behavior, aging, or a real device duty cycle.
 - **Capacitor pulse check:** an ideal 100 µF capacitor alone would drop 32 V while supplying 32 mA for 100 ms. The complete battery-plus-capacitor circuit needs a bench test.
 - **Radio range:** a link-budget calculation is not an RF range test. Site geometry, body loss, antennas, crowding, interference, and equipment need measurement.
 
