@@ -19,6 +19,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Regenerate deterministic outputs
+        run: |
+          python simulation/audit.py
+          python simulation/traffic_simulation.py
+          python simulation/sensitivity.py
+      - name: Verify checked-in outputs and site figure
+        run: |
+          git diff --exit-code -- results figures
+          cmp figures/jitter_sensitivity.svg docs/jitter_sensitivity.svg
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
