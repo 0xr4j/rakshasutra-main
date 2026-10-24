@@ -82,6 +82,10 @@ def packets_batched(cfg: dict, rng: random.Random) -> list[tuple[float, float, i
     duration = cfg["duration_seconds"]
     tags, poles, passage = cfg["active_tags"], cfg["poles_in_cell"], cfg["mean_tag_passage_seconds"]
     interval = cfg["arrival_batch_interval_seconds"]
+    jitter_min = float(cfg.get("batch_jitter_min_seconds", 0.2))
+    jitter_max = float(cfg.get("batch_jitter_max_seconds", 1.5))
+    if not 0 <= jitter_min <= jitter_max <= interval:
+        raise ValueError("batch jitter must satisfy 0 <= min <= max <= batch interval")
     mean_events_per_pole = tags / passage * interval / poles
     packets: list[tuple[float, float, int]] = []
     for bucket_start in range(0, duration, interval):
@@ -90,7 +94,7 @@ def packets_batched(cfg: dict, rng: random.Random) -> list[tuple[float, float, i
             while event_count > 0:
                 records = min(event_count, cfg["max_tag_records_per_batch"])
                 phy_bytes = cfg["lora_mac_phy_overhead_bytes"] + records * cfg["bytes_per_arrival_record"]
-                start = bucket_start + rng.uniform(0.2, 1.5)
+                start = bucket_start + rng.uniform(jitter_min, jitter_max)
                 packets.append((start, packet_airtime(cfg, phy_bytes), rng.randrange(cfg["channels"])))
                 event_count -= records
     heartbeat_bytes = cfg["lora_mac_phy_overhead_bytes"] + cfg["bloom_heartbeat_application_bytes"]
