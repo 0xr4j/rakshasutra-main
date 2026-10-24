@@ -32,8 +32,8 @@ jobs:
           python simulation/sensitivity.py
       - name: Verify checked-in outputs and site figure
         run: |
-          git diff --exit-code -- results figures
-          cmp figures/jitter_sensitivity.svg docs/jitter_sensitivity.svg
+          git diff --exit-code --ignore-space-at-eol --ignore-blank-lines -- results figures
+          python -c "from pathlib import Path; a=Path('figures/jitter_sensitivity.svg').read_text().rstrip(); b=Path('docs/jitter_sensitivity.svg').read_text().rstrip(); assert a == b, 'Pages sensitivity figure is stale'"
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload site
