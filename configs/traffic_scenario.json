@@ -25,5 +25,7 @@
     "The proposed case batches up to 25 eight-byte records at each pole every 15 seconds and sends one fixed 64-byte application heartbeat per pole every 60 seconds.",
     "Packets use independent uniform channel selection and the scenario-specific event timing; any same-channel airtime overlap destroys all overlapping packets. No capture, retries, duty-cycle enforcement, SF diversity, or RF measurements are modeled.",
     "The traffic model runs 40 independent deterministic seeds. Its 2.5th and 97.5th percentiles describe run-to-run stochastic variation under this configured scenario; they do not represent uncertainty in assumptions or measured shrine traffic."
-  ]
+  ],
+  "batch_jitter_min_seconds": 0.2,
+  "batch_jitter_max_seconds": 1.5
 }
