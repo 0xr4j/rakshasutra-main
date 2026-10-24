@@ -22,6 +22,24 @@ python simulation/traffic_simulation.py
 
 This simulation interprets the paper's 3,000 tags, 60 poles, and 55-second passage assumption as one Poisson arrival stream per cell, evenly spread across poles. It compares single-event uplinks plus raw per-pole ID heartbeats with 15-second, at-most-25-record chunks plus fixed 64-byte per-pole heartbeats. This is a chosen synthetic workload, **not** the paper's traffic derivation and not a reconstruction of shrine operations. The default runs 40 independent deterministic seeds and writes both a summary (`results/illustrative_traffic_simulation.csv`) and per-run records (`results/illustrative_traffic_replications.csv`). The summary includes the mean, standard deviation, and 2.5th–97.5th percentiles of run-level loss. These percentiles describe stochastic run-to-run variation under the configured assumptions; they do not measure uncertainty in the assumptions or field performance. Because the proposed batches are emitted in a narrow 200–1500 ms jitter window every 15 seconds, transmissions cluster. The simulator reports both event-driven loss and the pure-ALOHA estimate from mean load to expose how the Poisson-arrival approximation can fail for scheduled bursts.
 
+## Tests and sensitivity benchmark
+
+Run the deterministic unit tests:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The tests check selected arithmetic, fixture behavior, and reproducibility. They are software checks, not hardware, RF, security, or field validation.
+
+Run the batch-schedule sensitivity benchmark:
+
+```bash
+python simulation/sensitivity.py
+```
+
+It runs 40 deterministic seeds at each configured maximum jitter (1.5, 3.75, 7.5, and 15 seconds) and writes `results/jitter_sensitivity.csv` plus `figures/jitter_sensitivity.svg`. These are synthetic event-simulation outputs. The schedule sweep is not calibrated to measured radio reception or shrine traffic.
+
 ## Model definitions
 
 - **LoRa airtime:** Semtech-style symbol-time and payload-symbol calculation for the explicitly stated SF7/125 kHz/CR 4/5 scenario. PHY payload lengths are transcribed assumptions.
