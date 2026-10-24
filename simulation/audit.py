@@ -73,6 +73,61 @@ def svg_line_chart(path: Path, title: str, subtitle: str, x_label: str, y_label:
     path.write_text("\n".join(parts), encoding="utf-8")
 
 
+def paper_reconciliation_rows(cfg: dict) -> list[list[str]]:
+    """Compare paper headlines with calculations from the paper's stated inputs."""
+    rows: list[list[str]] = []
+    lora = cfg["lora"]
+    for payload, manuscript_value in ((28, "66.82 ms"), (77, "138.50 ms"), (213, "338.18 ms")):
+        calculated = airtime_ms(payload, lora["spreading_factor"], lora["bandwidth_hz"],
+                                lora["coding_rate_index"], lora["preamble_symbols"])
+        rows.append([f"airtime_{payload}_bytes", manuscript_value, f"{calculated:.3f} ms",
+                     "Calculated from stated SF7/BW/CR/preamble assumptions",
+                     "Arithmetic reproduced; not a radio measurement"])
+    n_tags = cfg["active_tags_per_cell"][-1]
+    g_base = cfg["aloha_table"][1]["offered_load_fraction"][-1]
+    g_new = cfg["aloha_table"][3]["offered_load_fraction"][-1]
+    loss_base = 1 - math.exp(-2 * g_base)
+    loss_new = 1 - math.exp(-2 * g_new)
+    reduction = 1 - g_new / g_base
+    rows.extend([
+        ["aloha_baseline_loss_3000", "54.2%", f"{loss_base:.4%}",
+         f"Calculated from manuscript G={g_base:.3f} at N={n_tags}",
+         "Formula reproduced; offered-load derivation not established"],
+        ["aloha_proposed_loss_3000", "15.8%", f"{loss_new:.4%}",
+         f"Calculated from manuscript G={g_new:.3f} at N={n_tags}",
+         "Formula reproduced; offered-load derivation not established"],
+        ["offered_load_reduction_3000", "82.4% (abstract)", f"{reduction:.4%}",
+         f"Calculated from Table IV G values {g_base:.3f} -> {g_new:.3f}",
+         "Mismatch: Table IV implies 77.9%; reconcile manuscript"],
+    ])
+    bat = cfg["battery"]
+    daily_avg = (bat["active_current_ua"] * bat["active_hours_per_day"]
+                 + bat["sleep_current_ua"] * bat["sleep_hours_per_day"]) / (
+                     bat["active_hours_per_day"] + bat["sleep_hours_per_day"])
+    for claim_id, capacity, claim in (
+        ("battery_life_25c", bat["nominal_capacity_mah"], bat.get("claimed_nominal_life_months")),
+        ("battery_life_cold", bat["cold_capacity_mah"], bat["claimed_cold_life_months"]),
+    ):
+        months = capacity * 1000 / daily_avg / 24 / 30.4375
+        rows.append([claim_id, f"{claim:g} months" if claim is not None else "not stated",
+                     f"{months:.2f} months",
+                     f"Calculated from {capacity} mAh and {daily_avg:.4f} uA weighted active/sleep current",
+                     "Arithmetic mismatch; not a validated battery-life model"])
+    ble = cfg["ble_capture"]
+    dwell = ble["detection_zone_m"] / (ble["vehicle_speed_kmh"] / 3.6)
+    opportunities = math.floor(dwell / ble["advertising_interval_s"])
+    p_needed = 1 - (1 - ble["claimed_capture_probability"]) ** (1 / max(opportunities, 1))
+    rows.append(["ev_capture_20kmh", f"{ble['claimed_capture_probability']:.1%} paper claim",
+                 f"{opportunities} minimum opportunities; {p_needed:.2%} independent per-ad success required",
+                 f"Calculated from {dwell:.2f} s dwell and {ble['advertising_interval_s']:.2f} s interval",
+                 "Unverified: per-ad reception probability and independence are not measured"])
+    rows.append(["field_results", "Paper labels some results empirical",
+                 "No raw field dataset, device logs, or experimental protocol supplied",
+                 "Repository input inventory",
+                 "Not independently verifiable; no field data available"])
+    return rows
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output-dir", type=Path, default=ROOT,
@@ -173,6 +228,11 @@ def main() -> None:
                    "Ignores pulse loads, cutoff, cold discharge curves, losses and aging",
                    "Active hours per day", "Idealized months", batt_plot, 8, 24, 0, 90,
                    [8, 10, 12, 14, 16, 18, 20, 22, 24], [0, 15, 30, 45, 60, 75, 90])
+
+    write_csv(output / "results" / "paper_reconciliation.csv",
+              ["claim_id", "manuscript_reported_value", "recomputed_value_or_evidence",
+               "basis_and_provenance", "assessment"],
+              paper_reconciliation_rows(cfg))
 
     print("Generated audit CSVs in results/ and analytical figures in figures/.")
     print(f"EV capture arithmetic: {dwell:.2f} s zone dwell, {opportunities} minimum opportunities, {p_needed:.1%} per-ad success required for the stated aggregate capture claim.")
