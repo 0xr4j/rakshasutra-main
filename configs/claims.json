@@ -6,17 +6,91 @@
     "bandwidth_hz": 125000,
     "coding_rate_index": 1,
     "preamble_symbols": 8,
-    "phy_payload_bytes": [28, 77, 213]
+    "phy_payload_bytes": [
+      28,
+      77,
+      213
+    ]
   },
   "aloha_table": [
-    {"name": "Raw BLE forwarding", "offered_load_fraction": [1.880, 3.760, 7.520, 11.280]},
-    {"name": "Single-event + raw heartbeat", "offered_load_fraction": [0.065, 0.130, 0.260, 0.390]},
-    {"name": "15 s batch + raw ID list", "offered_load_fraction": [0.030, 0.060, 0.092, 0.125]},
-    {"name": "25-tag chunk + 64 B Bloom", "offered_load_fraction": [0.021, 0.042, 0.064, 0.086]}
+    {
+      "name": "Raw BLE forwarding",
+      "offered_load_fraction": [
+        1.88,
+        3.76,
+        7.52,
+        11.28
+      ]
+    },
+    {
+      "name": "Single-event + raw heartbeat",
+      "offered_load_fraction": [
+        0.065,
+        0.13,
+        0.26,
+        0.39
+      ]
+    },
+    {
+      "name": "15 s batch + raw ID list",
+      "offered_load_fraction": [
+        0.03,
+        0.06,
+        0.092,
+        0.125
+      ]
+    },
+    {
+      "name": "25-tag chunk + 64 B Bloom",
+      "offered_load_fraction": [
+        0.021,
+        0.042,
+        0.064,
+        0.086
+      ]
+    }
   ],
-  "active_tags_per_cell": [500, 1000, 2000, 3000],
-  "bloom": {"bits": 512, "hashes": 3, "population": [10, 25, 50, 100, 250, 500, 1024]},
-  "ble_capture": {"advertising_interval_s": 0.8, "detection_zone_m": 25, "vehicle_speed_kmh": 20, "claimed_capture_probability": 0.994},
-  "pseudonym": {"bits": 32, "tag_population": 3000},
-  "battery": {"nominal_capacity_mah": 620, "cold_capacity_mah": 434, "active_current_ua": 29.74, "active_hours_per_day": 14, "sleep_current_ua": 0.60, "sleep_hours_per_day": 10, "claimed_cold_life_months": 11.1, "cell_internal_resistance_ohm": 42, "emergency_peak_current_ma": 32, "hold_up_capacitance_uf": 100, "peak_duration_ms": 100}
+  "active_tags_per_cell": [
+    500,
+    1000,
+    2000,
+    3000
+  ],
+  "bloom": {
+    "bits": 512,
+    "hashes": 3,
+    "population": [
+      10,
+      25,
+      50,
+      100,
+      250,
+      500,
+      1024
+    ]
+  },
+  "ble_capture": {
+    "advertising_interval_s": 0.8,
+    "detection_zone_m": 25,
+    "vehicle_speed_kmh": 20,
+    "claimed_capture_probability": 0.994
+  },
+  "pseudonym": {
+    "bits": 32,
+    "tag_population": 3000
+  },
+  "battery": {
+    "nominal_capacity_mah": 620,
+    "cold_capacity_mah": 434,
+    "active_current_ua": 29.74,
+    "active_hours_per_day": 14,
+    "sleep_current_ua": 0.6,
+    "sleep_hours_per_day": 10,
+    "claimed_cold_life_months": 11.1,
+    "cell_internal_resistance_ohm": 42,
+    "emergency_peak_current_ma": 32,
+    "hold_up_capacitance_uf": 100,
+    "peak_duration_ms": 100,
+    "claimed_nominal_life_months": 14.2
+  }
 }
