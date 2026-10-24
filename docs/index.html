@@ -20,12 +20,58 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 .notice{background:#f5e9e6;border:1px solid #e6c7c1;border-radius:20px;padding:24px 27px}.notice h3{margin:0 0 8px;font-size:21px;color:#87443e}.notice p{margin:0;font-size:14px;color:#624d4a}.quote{margin:0;border-left:3px solid var(--gold);padding:5px 0 5px 20px;font:italic 26px/1.35 var(--serif);color:var(--plum)}
 .footer{background:#261930;color:#ece5ef;padding:42px 0 48px}.footgrid{display:flex;justify-content:space-between;gap:25px;align-items:flex-start}.footer p{margin:0;max-width:650px;color:#cbbfd0;font-size:13px}.footer a{color:#f4d98b}.footer small{font:10px var(--mono);color:#b1a2b8}
 @media(max-width:800px){.links{display:none}.sectionhead{grid-template-columns:1fr;gap:10px}.sectionhead p{grid-column:1}.cols{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.step:nth-child(2):after{display:none}.split,.repo{grid-template-columns:1fr}.hero{padding-top:54px}.bandin,.footgrid{align-items:flex-start;flex-direction:column}}@media(max-width:480px){.wrap{width:calc(100% - 30px)}.hero h1{font-size:59px}.flow{grid-template-columns:1fr}.step:after{display:none!important}.barrow{grid-template-columns:92px 1fr 44px}.heroart{border-radius:15px}section{padding:68px 0}}
+
+/* Motion system: editorial, lightweight, keyboard-friendly, and reduced-motion aware. */
+.hero{isolation:isolate}.hero:before,.hero:after{content:"";position:absolute;pointer-events:none;z-index:-1;border-radius:50%;filter:blur(2px)}
+.hero:before{width:min(60vw,680px);height:min(60vw,680px);right:-10%;top:-18%;background:radial-gradient(circle at 45% 45%,#eadcf3 0,rgba(234,220,243,.5) 36%,transparent 70%);animation:drift 15s ease-in-out infinite alternate}
+.hero:after{width:210px;height:210px;right:17%;top:48%;border:1px solid #d5c5dd;box-shadow:0 0 0 22px #fffdf944,0 0 0 45px #e7ddec55;animation:orbit 32s linear infinite}
+@keyframes drift{to{transform:translate(-5%,7%) scale(1.08)}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.hero h1{animation:rise .85s cubic-bezier(.2,.8,.2,1) both}
+.hero .lead{animation:rise .85s .12s cubic-bezier(.2,.8,.2,1) both}
+.hero .actions{animation:rise .85s .22s cubic-bezier(.2,.8,.2,1) both}
+.heroart{animation:float 7s ease-in-out 1s infinite;transform-origin:center}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.scroll-progress{position:fixed;z-index:20;inset:0 auto auto 0;height:3px;width:0;background:linear-gradient(90deg,var(--gold),var(--coral),var(--plum));box-shadow:0 0 12px #d39a2670}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.card,.step,.panel,.file{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.card:hover,.step:hover,.panel:hover,.file:hover{transform:translateY(-4px);box-shadow:0 16px 36px #39264412;border-color:#c5b4ce}
+.walk{background:#f8f5ef;border:1px solid var(--line);border-radius:26px;padding:clamp(22px,4vw,42px);box-shadow:0 20px 55px #3926440b}
+.story-tabs{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 24px}
+.story-tab{appearance:none;border:1px solid #d7cbdc;background:#fffdf9;color:var(--violet);border-radius:999px;padding:10px 15px;font:700 13px var(--sans);cursor:pointer}
+.story-tab[aria-pressed=true]{background:var(--violet);color:#fff;border-color:var(--violet);box-shadow:0 6px 18px #39264426}
+.story-live{display:grid;grid-template-columns:.75fr 1.25fr;gap:22px;align-items:stretch}
+.story-scene{position:relative;min-height:310px;overflow:hidden;border-radius:20px;background:radial-gradient(circle at 50% 44%,#fffdf9 0 7%,transparent 7.5%),linear-gradient(145deg,#e8deee,#f2e8d7 65%,#e1edf0);display:grid;place-items:center}
+.story-scene:before{content:"";position:absolute;width:62%;height:62%;border:1px dashed #9b83aa;border-radius:50%;animation:orbit 24s linear infinite}
+.story-scene:after{content:"";position:absolute;width:43%;height:43%;border:1px solid #d7c5de;border-radius:50%;animation:orbit 18s linear infinite reverse}
+.scene-core{position:relative;z-index:2;width:100px;height:100px;border-radius:50%;display:grid;place-items:center;background:var(--violet);color:white;font-size:35px;box-shadow:0 0 0 12px #39264412,0 0 0 28px #39264408}
+.scene-pole{position:absolute;z-index:3;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#fffdf9;border:1px solid #d4c4dc;color:var(--plum);box-shadow:0 8px 20px #39264418;font-size:17px}
+.scene-pole.p1{top:18%;left:21%}.scene-pole.p2{top:20%;right:18%}.scene-pole.p3{bottom:17%;left:23%}.scene-pole.p4{bottom:18%;right:18%}
+.signal{position:absolute;z-index:4;top:50%;left:50%;width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 #d39a2680;opacity:0;transform:translate(-50%,-50%)}
+.story-scene[data-step="1"] .signal,.story-scene[data-step="2"] .signal,.story-scene[data-step="3"] .signal,.story-scene[data-step="4"] .signal{opacity:1;animation:pulse 1.6s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #d39a2680}100%{box-shadow:0 0 0 22px #d39a2600}}
+.story-copy{min-height:310px;display:flex;flex-direction:column;justify-content:center;background:var(--white);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,3vw,36px)}
+.story-count{font:700 11px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#806116}
+.story-copy h3{font-size:clamp(24px,4vw,38px);line-height:1.04;letter-spacing:-.055em;margin:13px 0}
+.story-copy p{color:var(--muted);margin:0;max-width:540px}
+.story-controls{display:flex;align-items:center;gap:12px;margin-top:24px}
+.story-controls button{appearance:none;border:1px solid #d2c7d7;background:#fff;border-radius:50%;width:42px;height:42px;font-size:19px;cursor:pointer;color:var(--violet)}
+.story-controls button:hover:not(:disabled){background:var(--violet);color:white}
+.story-controls button:disabled{opacity:.38;cursor:not-allowed}
+.story-dots{display:flex;gap:7px;margin-left:auto}.story-dot{width:8px;height:8px;border-radius:50%;background:#d7cedb}.story-dot.active{background:var(--gold);transform:scale(1.25)}
+.disclaimer-mini{font:11px/1.5 var(--mono);color:#746d78;margin-top:17px}
+@media(max-width:700px){.story-live{grid-template-columns:1fr}.story-scene{min-height:240px}.story-copy{min-height:260px}}
+@media(prefers-reduced-motion:reduce){.hero:before,.hero:after,.hero h1,.hero .lead,.hero .actions,.heroart,.story-scene:before,.story-scene:after,.signal{animation:none!important}.reveal{opacity:1;transform:none;transition:none}.card,.step,.panel,.file{transition:none}}
+
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 </style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="nav"><div class="wrap navin"><a class="brand" href="#top"><i></i>RAKSHASUTRA</a><nav class="links" aria-label="Main navigation"><a href="#idea">The idea</a><a href="#evidence">Evidence</a><a href="#audit">Open questions</a><a href="#repo">Repository</a></nav><a class="navcta" href="https://github.com/0xr4j/rakshasutra-main">View project ↗</a></div></header>
+<header class="nav"><div class="wrap navin"><a class="brand" href="#top"><i></i>RAKSHASUTRA</a><nav class="links" aria-label="Main navigation"><a href="#idea">The idea</a><a href="#walkthrough">Walkthrough</a><a href="#evidence">Evidence</a><a href="#audit">Open questions</a><a href="#repo">Repository</a></nav><a class="navcta" href="https://github.com/0xr4j/rakshasutra-main">View project ↗</a></div></header>
+<div class="scroll-progress" aria-hidden="true"></div>
 <main id="main">
 <div id="top" class="hero"><div class="wrap">
 <div class="eyebrow">A research engineering project · India · 2026</div>
@@ -57,6 +103,26 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 </div>
 <div class="callout"><strong>Privacy promise to test, not an accomplished property:</strong> rotating IDs can reduce simple persistent tracking, but metadata, cryptographic details, retention, access control, and real-world privacy law still need independent review.</div>
 </div></section>
+
+<section id="walkthrough"><div class="wrap">
+<div class="sectionhead"><div class="kicker">03 / See one journey</div><h2>A radio signal.<br><em>A careful hand-off.</em></h2><p>Step through a proposed observation from wearable to authorized lookup. The map is illustrative; it does not show a measured route or live tracking.</p></div>
+<div class="walk">
+<div class="story-tabs" role="group" aria-label="Choose an illustrative scenario">
+<button class="story-tab" type="button" data-story="family" aria-pressed="true">A child separated from family</button>
+<button class="story-tab" type="button" data-story="vehicle" aria-pressed="false">A battery car passes a pole</button>
+</div>
+<div class="story-live">
+<div class="story-scene" data-step="1" aria-hidden="true"><span class="scene-pole p1">⌁</span><span class="scene-pole p2">⌁</span><span class="scene-pole p3">⌁</span><span class="scene-pole p4">⌁</span><span class="scene-core">◉</span><span class="signal"></span></div>
+<div class="story-copy" aria-live="polite">
+<span class="story-count">STEP 1 OF 4</span><h3 id="story-title">The band sends a short signal.</h3>
+<p id="story-text">In this illustrative family scenario, the wearable broadcasts its current rotating identifier. It does not calculate GPS coordinates.</p>
+<div class="story-controls"><button type="button" id="story-prev" aria-label="Previous step" disabled>←</button><button type="button" id="story-next" aria-label="Next step">→</button><div class="story-dots" aria-hidden="true"><span class="story-dot active"></span><span class="story-dot"></span><span class="story-dot"></span><span class="story-dot"></span></div></div>
+<div class="disclaimer-mini">PROPOSED FLOW · ILLUSTRATIVE ONLY · NOT A DEPLOYMENT RESULT</div>
+</div>
+</div>
+</div>
+</div></section>
+
 <section id="evidence"><div class="wrap">
 <div class="sectionhead"><div class="kicker">03 / What the numbers say</div><h2>Two views of load.<br><em>Do not mix them up.</em></h2><p>The manuscript’s table and this repository’s synthetic event simulation answer different questions. One recomputes a formula; the other explores one chosen schedule.</p></div>
 <div class="split">
@@ -97,4 +163,66 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 </div></section>
 </main>
 <footer class="footer"><div class="wrap footgrid"><div><b>RAKSHASUTRA / SURAKSHANET</b><p>A proposed last-heard checkpoint architecture for pilgrim safety. This repository audits selected claims; it does not certify the manuscript’s outcomes.</p><p style="margin-top:12px"><a href="https://github.com/0xr4j/rakshasutra-main">Source repository</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_open.pdf">Supplied paper</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/claim-audit.md">Full claim audit</a></p></div><div><small>AUTHOR-SUPPLIED PAPER · SELECTED CALCULATIONS · SYNTHETIC SIMULATION<br>NO FIELD DEPLOYMENT DATA SUPPLIED</small></div></div></footer>
+
+<script>
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const progress = document.querySelector('.scroll-progress');
+  const updateProgress = () => {
+    if (!progress) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', updateProgress, {passive:true});
+  updateProgress();
+
+  const revealItems = document.querySelectorAll('.sectionhead,.card,.flow,.split,.tablewrap,.repo,.notice,.walk');
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+    }), {threshold:.12});
+    revealItems.forEach(item => item.classList.add('reveal') || observer.observe(item));
+  }
+
+  const stories = {
+    family: [
+      ['The band sends a short signal.','In this illustrative family scenario, the wearable broadcasts its current rotating identifier. It does not calculate GPS coordinates.'],
+      ['A nearby pole may hear it.','If radio conditions allow, a smart pole records that it heard the band. A missed signal or a gap between poles remains possible.'],
+      ['The observation travels onward.','The proposed gateway relays a compact observation to the backend. A delayed or failed backhaul would delay the record.'],
+      ['An authorized person checks.','If the service is operating and access is approved, staff may see the last-heard checkpoint. That is an area clue, not a live position or guarantee of rescue.']
+    ],
+    vehicle: [
+      ['The band sends a short signal.','For this illustrative passing-vehicle scenario, a band broadcasts while moving past the route. The animation does not model speed or reception probability.'],
+      ['A pole listens as it passes.','A pole may capture one or more advertisements if the link budget, antenna direction, timing, and interference allow it.'],
+      ['The gateway forwards an observation.','A pole observation can be relayed to the proposed backend. The paper’s capture percentage still needs a justified reception model and field measurement.'],
+      ['The backend keeps a checkpoint.','The system can only report a received observation and its checkpoint context. No continuous trajectory is inferred by this demo.']
+    ]
+  };
+  let scenario = 'family', step = 0;
+  const tabs = [...document.querySelectorAll('.story-tab')];
+  const title = document.getElementById('story-title');
+  const text = document.getElementById('story-text');
+  const count = document.querySelector('.story-count');
+  const scene = document.querySelector('.story-scene');
+  const prev = document.getElementById('story-prev');
+  const next = document.getElementById('story-next');
+  const dots = [...document.querySelectorAll('.story-dot')];
+  const render = () => {
+    const item = stories[scenario][step];
+    title.textContent = item[0]; text.textContent = item[1];
+    count.textContent = 'STEP ' + (step + 1) + ' OF 4';
+    scene.dataset.step = String(step + 1);
+    prev.disabled = step === 0; next.disabled = step === 3;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === step));
+  };
+  tabs.forEach(tab => tab.addEventListener('click', () => {
+    scenario = tab.dataset.story; step = 0;
+    tabs.forEach(button => button.setAttribute('aria-pressed', String(button === tab)));
+    render();
+  }));
+  prev.addEventListener('click', () => { if (step > 0) { step--; render(); } });
+  next.addEventListener('click', () => { if (step < 3) { step++; render(); } });
+})();
+</script>
+
 </body></html>
