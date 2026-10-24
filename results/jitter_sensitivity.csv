@@ -1,0 +1,7 @@
+scenario,batch_jitter_max_seconds,replications,mean_packet_loss,run_loss_standard_deviation,run_loss_p2_5,run_loss_p97_5,status
+single arrival + raw ID heartbeat,,40,0.56671748,0.00125448,0.56460430,0.56894365,Synthetic baseline; not field data
+15 s batches + 64 B Bloom heartbeat,1.50,40,0.72811448,0.00749343,0.71436170,0.74095047,Synthetic; mean G=0.119623; mean pure-ALOHA estimate=0.212779; not field data
+15 s batches + 64 B Bloom heartbeat,3.75,40,0.49509912,0.00934570,0.47750245,0.51065870,Synthetic; mean G=0.119623; mean pure-ALOHA estimate=0.212779; not field data
+15 s batches + 64 B Bloom heartbeat,7.50,40,0.32448552,0.00927648,0.30599168,0.33890033,Synthetic; mean G=0.119623; mean pure-ALOHA estimate=0.212779; not field data
+15 s batches + 64 B Bloom heartbeat,15.00,40,0.21035920,0.00422869,0.20108515,0.21754465,Synthetic; mean G=0.119623; mean pure-ALOHA estimate=0.212779; not field data
+
