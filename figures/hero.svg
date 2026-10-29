@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 680" role="img" aria-labelledby="t d">
-<title id="t">Rakshasutra checkpoint tracking concept</title><desc id="d">A wristband sends a short BLE signal to a smart pole, which sends a checkpoint record through a gateway to a server. This is a last-heard checkpoint, not GPS.</desc>
+<title id="t">Rakshasutra checkpoint proposal</title><desc id="d">A BLE wristband sends an identifier to a pole. The pole can send a timestamped record through a LoRaWAN gateway to a server. The record names the last pole that received the band.</desc>
 <defs>
  <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#f8f5ef"/><stop offset="1" stop-color="#ebe7f1"/></linearGradient>
  <linearGradient id="violet" x2="1"><stop stop-color="#31203b"/><stop offset="1" stop-color="#50335f"/></linearGradient>
@@ -7,15 +7,15 @@
  <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0V80" fill="none" stroke="#412c4b" stroke-opacity=".055"/></pattern>
 </defs>
 <rect width="1600" height="680" rx="36" fill="url(#bg)"/><rect width="1600" height="680" rx="36" fill="url(#grid)"/>
-<text x="94" y="113" fill="#8b6517" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="5">RAKSHASUTRA · RESEARCH CONCEPT</text>
-<text x="92" y="220" fill="#24172b" font-family="Arial,sans-serif" font-size="68" font-weight="800" letter-spacing="-3">A last-heard</text>
-<text x="92" y="296" fill="#6c4a7e" font-family="Georgia,serif" font-size="68" font-style="italic">checkpoint, not live.</text>
-<text x="96" y="354" fill="#5d5662" font-family="Arial,sans-serif" font-size="23">Proposed BLE-to-LoRaWAN checkpoint observations</text>
-<text x="96" y="389" fill="#5d5662" font-family="Arial,sans-serif" font-size="23">for crowded places where phone connectivity may fail.</text>
+<text x="94" y="113" fill="#8b6517" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="5">RAKSHASUTRA · PROPOSAL</text>
+<text x="92" y="220" fill="#24172b" font-family="Arial,sans-serif" font-size="68" font-weight="800" letter-spacing="-3">The last pole</text>
+<text x="92" y="296" fill="#6c4a7e" font-family="Georgia,serif" font-size="68" font-style="italic">to receive the band.</text>
+<text x="96" y="354" fill="#5d5662" font-family="Arial,sans-serif" font-size="23">BLE wristband and LoRaWAN checkpoint proposal</text>
+<text x="96" y="389" fill="#5d5662" font-family="Arial,sans-serif" font-size="23">for selected points along pilgrim routes.</text>
 <g transform="translate(105 465)">
  <rect width="366" height="88" rx="18" fill="#fffdf9" stroke="#d7cddc"/>
  <circle cx="42" cy="44" r="8" fill="#d59a22"/><text x="65" y="38" fill="#24172b" font-family="Arial,sans-serif" font-size="17" font-weight="700">PROPOSED SYSTEM</text>
- <text x="65" y="62" fill="#706776" font-family="Arial,sans-serif" font-size="15">Architecture and calculations; not deployed.</text>
+ <text x="65" y="62" fill="#706776" font-family="Arial,sans-serif" font-size="15">Proposed design; not deployed.</text>
 </g>
 <g transform="translate(735 108)" filter="url(#shadow)">
  <path d="M90 284 C265 196 377 196 540 284" fill="none" stroke="#d69d2c" stroke-width="5" stroke-dasharray="2 16" stroke-linecap="round"/>
@@ -24,7 +24,7 @@
   <rect width="170" height="178" rx="28" fill="#fffdf9" stroke="#ddd4e2"/>
   <circle cx="85" cy="61" r="37" fill="#f2e9d2"/><path d="M63 63c10-27 33-31 46-14v28c-13 17-36 13-46-14Z" fill="none" stroke="#583e66" stroke-width="8"/><path d="M72 61h29" stroke="#d59a22" stroke-width="6" stroke-linecap="round"/>
   <text x="85" y="132" text-anchor="middle" fill="#24172b" font-family="Arial,sans-serif" font-weight="700" font-size="17">WRISTBAND</text>
-  <text x="85" y="155" text-anchor="middle" fill="#706776" font-family="Arial,sans-serif" font-size="13">BLE advert</text>
+  <text x="85" y="155" text-anchor="middle" fill="#706776" font-family="Arial,sans-serif" font-size="13">BLE broadcast</text>
  </g>
  <g transform="translate(220 118)">
   <rect width="170" height="245" rx="28" fill="url(#violet)"/>
@@ -46,5 +46,5 @@
   <text x="85" y="155" text-anchor="middle" fill="#706776" font-family="Arial,sans-serif" font-size="13">authorized lookup</text>
  </g>
 </g>
-<text x="807" y="626" fill="#6f6673" font-family="Arial,sans-serif" font-size="15">A nearby checkpoint observation is not continuous GPS tracking.</text>
+<text x="807" y="626" fill="#6f6673" font-family="Arial,sans-serif" font-size="15">A pole record shows the last reception, not a live location.</text>
 </svg>

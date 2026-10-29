@@ -1,6 +1,6 @@
 # Selected claim audit
 
-This is a first-pass engineering consistency audit of the author-supplied manuscript. It is not a peer review, field validation, regulatory opinion, or complete security analysis. “Reproduced” below means only that a stated equation reproduces a stated number under listed inputs.
+This document checks selected calculations in the supplied manuscript against its stated inputs. It does not validate field results, assess regulatory compliance, or complete a security review. “Reproduced” means the equation returns the stated number for the inputs shown.
 
 | Manuscript statement | What can be checked here | Evidence status / issue |
 |---|---|---|
@@ -29,8 +29,8 @@ This is a first-pass engineering consistency audit of the author-supplied manusc
 
 ## What this audit does not establish
 
-It does not establish that the system was built, deployed, tested at SMVD, accepted by shrine authorities, compliant with Indian radio rules, safe for children, or effective in locating pilgrims. It does not verify the manuscript's citations or external site-specific factual claims. Those require primary-source checks and/or measurements.
+This audit does not show that the system was built or deployed, tested at SMVD, approved by shrine authorities, or accepted by regulators. It does not establish child safety or tracking effectiveness. The manuscript’s citations and site-specific claims also need to be checked against primary sources or measurements.
 
-## Synthetic schedule sensitivity
+## Traffic simulation
 
-`simulation/traffic_simulation.py` adds a separate one-hour fixed-seed workload using the assumptions in `configs/traffic_scenario.json`. Under that scenario, batching lowers the number of packets and average airtime load, but the narrow periodic flush jitter creates transmission bursts. The event-driven collision model reports substantially more loss than `1-exp(-2G)` calculated from mean load. In a 40-seed parameter sweep, mean event-driven loss was 72.8% at a maximum 1.5 s jitter, 49.5% at 3.75 s, 32.4% at 7.5 s, and 21.0% at 15 s; the mean offered load stayed the same. This illustrates sensitivity to a synthetic scheduling assumption, not actual SMVD packet loss. It is a design warning that average offered load alone is insufficient when packet starts are synchronized; field-like event traces and schedule/jitter experiments are still needed.
+`simulation/traffic_simulation.py` adds a separate one-hour fixed-seed workload using the assumptions in `configs/traffic_scenario.json`. Under that scenario, batching lowers the number of packets and average airtime load, but the narrow periodic flush jitter creates transmission bursts. The event-driven model reports more loss than `1-exp(-2G)` predicts from average load. In a 40-seed sweep, simulated loss was 72.8% with a maximum 1.5-second jitter, 49.5% at 3.75 seconds, 32.4% at 7.5 seconds, and 21.0% at 15 seconds. Average load stayed constant. These results depend on the synthetic schedule and do not predict packet loss at SMVD. Measured traffic and radio tests would be needed to assess a real deployment.

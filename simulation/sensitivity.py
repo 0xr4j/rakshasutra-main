@@ -41,12 +41,12 @@ def write_figure(path: Path, points: list[tuple[float, float]]) -> None:
     y = lambda value: top + (1 - value) * plot_h
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
-        '<title id="title">Synthetic packet loss under different batch-jitter windows</title>',
-        '<desc id="desc">Mean loss over fixed-seed simulation runs decreases as the maximum random delay widens. This is not field data.</desc>',
+        '<title id="title">Packet loss at four batch delays</title>',
+        '<desc id="desc">In this synthetic model, packet loss falls as the send-delay range widens. No field data are included.</desc>',
         '<rect width="100%" height="100%" fill="#0b1120"/>',
         '<style>text{font-family:Inter,Segoe UI,Arial,sans-serif}.title{fill:#f4f7fb;font-size:23px;font-weight:700}.sub{fill:#9eacc3;font-size:13px}.grid{stroke:#26344b}.line{fill:none;stroke:#58d6c5;stroke-width:4}.point{fill:#ffbf69;stroke:#0b1120;stroke-width:2}</style>',
-        '<text x="70" y="38" class="title">Batch timing changes collision loss</text>',
-        '<text x="70" y="60" class="sub">Synthetic one-cell scenario · fixed seed replications · not a deployment prediction</text>',
+        '<text x="70" y="38" class="title">Wider batch timing lowers simulated loss</text>',
+        '<text x="70" y="60" class="sub">Synthetic one-cell model · 40 runs per setting · no field data</text>',
     ]
     for tick in [0, .2, .4, .6, .8, 1]:
         yy = y(tick)
@@ -66,7 +66,7 @@ def write_figure(path: Path, points: list[tuple[float, float]]) -> None:
         f'<line x1="{left}" y1="{height-bottom}" x2="{width-right}" y2="{height-bottom}" stroke="#61718b"/>',
         f'<text x="{left+plot_w/2}" y="{height-26}" text-anchor="middle" class="sub">Maximum random send delay within each 15 s flush window (seconds)</text>',
         '<text x="24" y="245" transform="rotate(-90 24 245)" text-anchor="middle" class="sub">Mean simulated packet loss</text>',
-        '<text x="70" y="455" class="sub">Assumed inputs, same-SF overlap model, no RF capture/retries, no field observations.</text>',
+        '<text x="70" y="455" class="sub">Assumed inputs; no RF capture or retries; no field observations.</text>',
         '</svg>',
     ]
     path.parent.mkdir(parents=True, exist_ok=True)

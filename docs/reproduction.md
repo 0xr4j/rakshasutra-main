@@ -20,7 +20,11 @@ Run the separate event-driven scenario:
 python simulation/traffic_simulation.py
 ```
 
-This simulation interprets the paper's 3,000 tags, 60 poles, and 55-second passage assumption as one Poisson arrival stream per cell, evenly spread across poles. It compares single-event uplinks plus raw per-pole ID heartbeats with 15-second, at-most-25-record chunks plus fixed 64-byte per-pole heartbeats. This is a chosen synthetic workload, **not** the paper's traffic derivation and not a reconstruction of shrine operations. The default runs 40 independent deterministic seeds and writes both a summary (`results/illustrative_traffic_simulation.csv`) and per-run records (`results/illustrative_traffic_replications.csv`). The summary includes the mean, standard deviation, and 2.5th–97.5th percentiles of run-level loss. These percentiles describe stochastic run-to-run variation under the configured assumptions; they do not measure uncertainty in the assumptions or field performance. Because the proposed batches are emitted in a narrow 200–1500 ms jitter window every 15 seconds, transmissions cluster. The simulator reports both event-driven loss and the pure-ALOHA estimate from mean load to expose how the Poisson-arrival approximation can fail for scheduled bursts.
+The model treats the paper's 3,000 tags, 60 poles, and 55-second passage time as one Poisson arrival stream spread evenly across the poles. It compares single-event uplinks and raw-ID heartbeats with 15-second batches of up to 25 records and fixed 64-byte heartbeats. This workload is synthetic; it does not reproduce the paper's traffic calculation or shrine operations.
+
+By default, the script runs 40 deterministic seeds. It writes a summary to `results/illustrative_traffic_simulation.csv` and per-run records to `results/illustrative_traffic_replications.csv`. The summary reports the mean, standard deviation, and 2.5th–97.5th percentiles of run-level packet loss. Those percentiles describe variation across runs under the chosen inputs, not uncertainty in the inputs or expected field performance.
+
+Batched transmissions use a shared 15-second schedule with 200–1500 ms of jitter, so they can cluster. The script reports both simulated collisions and the pure-ALOHA estimate from average load to show how timing can change the result.
 
 ## Tests and sensitivity benchmark
 

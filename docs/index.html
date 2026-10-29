@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f3f0eb">
-<title>Rakshasutra | A last-heard checkpoint, not a live location</title>
-<meta name="description" content="Rakshasutra is a proposed BLE-wearable and LoRaWAN checkpoint architecture for recording the most recent receiver observation along crowded pilgrim routes. Field performance has not been established.">
+<title>Rakshasutra | Last-heard checkpoints</title>
+<meta name="description" content="Rakshasutra is a proposal for BLE wristbands and LoRaWAN relays at selected points along pilgrim routes. It records the last pole that heard a band; it does not provide live GPS.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Rakshasutra | A last-heard checkpoint, not a live location">
-<meta property="og:description" content="A proposed BLE-wearable and LoRaWAN checkpoint architecture. This repository contains reproducible engineering checks and synthetic traffic simulations, not field validation.">
+<meta property="og:title" content="Rakshasutra | Last-heard checkpoints">
+<meta property="og:description" content="A BLE and LoRaWAN checkpoint proposal with selected calculation checks and synthetic simulations. No field results are included.">
 <meta property="og:url" content="https://0xr4j.github.io/rakshasutra-main/">
 <meta name="twitter:card" content="summary">
 <style>
@@ -24,7 +24,7 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 .repo{display:grid;grid-template-columns:1fr 1fr;gap:16px}.file{background:var(--white);border:1px solid var(--line);border-radius:17px;padding:19px}.file code{font:12px var(--mono);color:var(--plum)}.file p{margin:8px 0 0;font-size:13px;color:var(--muted)}
 .notice{background:#f5e9e6;border:1px solid #e6c7c1;border-radius:20px;padding:24px 27px}.notice h3{margin:0 0 8px;font-size:21px;color:#87443e}.notice p{margin:0;font-size:14px;color:#624d4a}.quote{margin:0;border-left:3px solid var(--gold);padding:5px 0 5px 20px;font:italic 26px/1.35 var(--serif);color:var(--plum)}
 .footer{background:#261930;color:#ece5ef;padding:42px 0 48px}.footgrid{display:flex;justify-content:space-between;gap:25px;align-items:flex-start}.footer p{margin:0;max-width:650px;color:#cbbfd0;font-size:13px}.footer a{color:#f4d98b}.footer small{font:10px var(--mono);color:#b1a2b8}
-@media(max-width:800px){.links{display:none}.sectionhead{grid-template-columns:1fr;gap:10px}.sectionhead p{grid-column:1}.cols{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.step:nth-child(2):after{display:none}.split,.repo{grid-template-columns:1fr}.hero{padding-top:54px}.bandin,.footgrid{align-items:flex-start;flex-direction:column}}@media(max-width:480px){.wrap{width:calc(100% - 30px)}.hero h1{font-size:59px}.flow{grid-template-columns:1fr}.step:after{display:none!important}.barrow{grid-template-columns:92px 1fr 44px}.heroart{border-radius:15px}section{padding:68px 0}}
+@media(max-width:800px){.links{order:3;width:100%;display:flex;gap:15px;overflow-x:auto;white-space:nowrap;padding:6px 2px 9px;scrollbar-width:thin}.navin{height:auto;min-height:68px;flex-wrap:wrap;gap:8px}html{scroll-padding-top:112px}.sectionhead{grid-template-columns:1fr;gap:10px}.sectionhead p{grid-column:1}.cols{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.step:nth-child(2):after{display:none}.split,.repo{grid-template-columns:1fr}.hero{padding-top:54px}.bandin,.footgrid{align-items:flex-start;flex-direction:column}}@media(max-width:480px){.wrap{width:calc(100% - 30px)}.hero h1{font-size:59px}.flow{grid-template-columns:1fr}.step:after{display:none!important}.barrow{grid-template-columns:92px 1fr 44px}.heroart{border-radius:15px}section{padding:68px 0}}
 
 /* Motion system: editorial, lightweight, keyboard-friendly, and reduced-motion aware. */
 .hero{isolation:isolate}.hero:before,.hero:after{content:"";position:absolute;pointer-events:none;z-index:-1;border-radius:50%;filter:blur(2px)}
@@ -75,52 +75,52 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="nav"><div class="wrap navin"><a class="brand" href="#top"><i></i>RAKSHASUTRA</a><nav class="links" aria-label="Main navigation"><a href="#idea">The idea</a><a href="#walkthrough">Walkthrough</a><a href="#evidence">Evidence</a><a href="#audit">Open questions</a><a href="#repo">Repository</a></nav><a class="navcta" href="https://github.com/0xr4j/rakshasutra-main">View project ↗</a></div></header>
+<header class="nav"><div class="wrap navin"><a class="brand" href="#top"><i></i>RAKSHASUTRA</a><nav class="links" aria-label="Main navigation"><a href="#idea">Why checkpoints</a><a href="#flow">How it works</a><a href="#walkthrough">Example</a><a href="#evidence">Results</a><a href="#audit">Audit</a><a href="#repo">Files</a></nav><a class="navcta" href="https://github.com/0xr4j/rakshasutra-main">Source code ↗</a></div></header>
 <div class="scroll-progress" aria-hidden="true"></div>
 <main id="main">
 <div id="top" class="hero"><div class="wrap">
-<div class="eyebrow">A research engineering project · India · 2026</div>
-<h1>A last-heard<br><em>checkpoint.</em></h1>
-<p class="lead">Rakshasutra (SurakshaNet) is a proposed BLE-wearable and LoRaWAN checkpoint architecture for recording the most recent receiver observation along crowded pilgrim routes. It describes a checkpoint observation, not a live GPS location.</p>
-<div class="actions"><a class="button dark" href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_research_draft.pdf">Read the research draft <span>↗</span></a><a class="button light" href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/claim-audit.md">Review evidence and claims <span>↗</span></a></div>
-<img class="heroart" src="hero.svg" alt="Proposed flow from a BLE wristband through a smart pole and LoRaWAN gateway to an authorized server lookup. It records a last-heard checkpoint, not continuous GPS.">
-<div class="stamps"><span class="stamp"><strong>Proposal</strong> · not deployed</span><span class="stamp"><strong>Analysis</strong> · reproducible arithmetic</span><span class="stamp"><strong>Simulation</strong> · synthetic workload</span></div>
+<div class="eyebrow">Research project · BLE and LoRaWAN · 2026</div>
+<h1>The last pole<br><em>that heard the band.</em></h1>
+<p class="lead">Rakshasutra (SurakshaNet) is a proposal for BLE wristbands and LoRaWAN relays at selected points on a pilgrim route. A receiver records when it last heard a band. It does not provide live GPS.</p>
+<div class="actions"><a class="button dark" href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_research_draft.pdf">Read the research draft <span>↗</span></a><a class="button light" href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/claim-audit.md">Read the claim audit <span>↗</span></a></div>
+<img class="heroart" src="hero.svg" alt="A proposed path from BLE wristband to pole, gateway, and server. The server can show the last pole that received the band.">
+<div class="stamps"><span class="stamp"><strong>Proposal</strong> · not deployed</span><span class="stamp"><strong>Calculations</strong> · reproducible</span><span class="stamp"><strong>Traffic runs</strong> · synthetic</span></div>
 </div></div>
-<div class="band"><div class="wrap bandin"><b>Evidence before adjectives</b><span>Every result is labeled as a paper claim, calculation, assumption, or synthetic simulation.</span></div></div>
+<div class="band"><div class="wrap bandin"><b>What this repository contains</b><span>The supplied paper, selected calculation checks, and simulations based on stated assumptions. No field data were supplied.</span></div></div>
 <section id="idea"><div class="wrap">
-<div class="sectionhead"><div class="kicker">01 / Why this idea</div><h2>Four everyday gaps.<br><em>One checkpoint question.</em></h2><p>At a crowded shrine, a phone-based map may be unavailable or unwelcome. The proposed system asks a narrower question: “Which installed pole heard this band most recently?”</p></div>
+<div class="sectionhead"><div class="kicker">01 / Why fixed receivers</div><h2>Record the last pole<br><em>that received a band</em></h2><p>The proposal places poles along a route to record when they receive a wearable. Whether that is useful depends on radio coverage and local rules.</p></div>
 <div class="cols">
-<article class="card"><div class="num">01</div><h3>Phone dependence</h3><p>Consumer trackers often depend on nearby participating phones and a working network path. This proposal places fixed receivers along selected routes.</p><small>Design motivation · check deployment assumptions</small></article>
-<article class="card"><div class="num">02</div><h3>Gate-only reads</h3><p>Passive RFID can be useful at a reader gate. A checkpoint network would aim to add observations between entry and exit points.</p><small>Concept comparison · not a universal RFID limitation</small></article>
-<article class="card"><div class="num">03</div><h3>Signal shadows</h3><p>Metal structures and dense crowds can weaken radio links. The paper proposes pole placement and antenna choices; the repo does not contain a site survey.</p><small>Open RF question · field measurements needed</small></article>
+<article class="card"><div class="num">01</div><h3>Phone-based tracking</h3><p>This proposal uses fixed receivers at selected route points instead of relying on nearby phones. Whether that helps depends on site coverage and how the system is used.</p><small>Proposal · needs a site plan</small></article>
+<article class="card"><div class="num">02</div><h3>Reader-gate RFID</h3><p>Passive RFID readers record a tag when it passes a reader. The proposal would add receivers between route entry and exit points.</p><small>Comparison · depends on reader placement</small></article>
+<article class="card"><div class="num">03</div><h3>Radio coverage</h3><p>Metal structures and dense crowds can weaken radio links. The paper proposes pole placement and antenna choices; the repo does not contain a site survey.</p><small>Open RF question · field measurements needed</small></article>
 <article class="card"><div class="num">04</div><h3>Restricted phone use</h3><p>Some queues or sanctum areas restrict phones. A wearable might still send a short signal, subject to local rules and consent.</p><small>Context-specific · verify with venue policy</small></article>
-<article class="card"><div class="num">?</div><h3>The villain: blind spots</h3><p>A band can only be “last heard” where a receiver is installed and the radio link succeeds. Between poles, the system has uncertainty.</p><small>One sentence to keep: last-heard is not live position.</small></article>
-<article class="card"><div class="num">→</div><h3>Keep the claim small</h3><p>This is a proposed checkpoint aid for authorized staff. It is not a substitute for emergency operations, GPS, or human care.</p><small>Research concept · not a safety product</small></article>
+<article class="card"><div class="num">?</div><h3>Gaps between poles</h3><p>The record updates only when a pole receives the band. It may be old or missing between poles.</p><small>Last heard is not live location.</small></article>
+<article class="card"><div class="num">→</div><h3>What it cannot do</h3><p>The proposal is a checkpoint aid for authorized staff. It is not GPS, emergency response, or a substitute for human care.</p><small>Research concept · not a safety product</small></article>
 </div>
 </div></section>
 <section style="background:#ebe7ef" id="flow"><div class="wrap">
-<div class="sectionhead"><div class="kicker">02 / The proposed path</div><h2>Four pieces.<br><em>One radio breadcrumb.</em></h2><p>The concept separates the short wristband-to-pole radio hop from the longer pole-to-server backhaul. Each hop has to be built and tested.</p></div>
+<div class="sectionhead"><div class="kicker">02 / How it could work</div><h2>From wristband<br><em>to checkpoint record</em></h2><p>The proposed path has two radio links: wristband to pole, then pole to gateway and server. Both links need to be built and tested.</p></div>
 <div class="flow">
 <div class="step"><div class="icon">◉</div><b>Wearable band</b><span>Broadcasts a short, changing BLE identifier. No coordinates are created by the band.</span></div>
 <div class="step"><div class="icon">⌁</div><b>Smart pole</b><span>Listens nearby and records a time-stamped checkpoint observation when reception succeeds.</span></div>
 <div class="step"><div class="icon">⇢</div><b>Gateway</b><span>Relays compact pole messages over the proposed LoRaWAN backhaul.</span></div>
 <div class="step"><div class="icon">▤</div><b>Authorized lookup</b><span>A backend can resolve an observation for an approved safety workflow, under access controls.</span></div>
 </div>
-<div class="callout"><strong>Privacy promise to test, not an accomplished property:</strong> rotating IDs can reduce simple persistent tracking, but metadata, cryptographic details, retention, access control, and real-world privacy law still need independent review.</div>
+<div class="callout"><strong>Privacy still needs review.</strong> Rotating identifiers may reduce persistent tracking, but they do not address metadata, key management, data retention, access controls, or local privacy law.</div>
 </div></section>
 
 <section id="walkthrough"><div class="wrap">
-<div class="sectionhead"><div class="kicker">03 / See one journey</div><h2>A radio signal.<br><em>A careful hand-off.</em></h2><p>Step through a proposed observation from wearable to authorized lookup. The map is illustrative; it does not show a measured route or live tracking.</p></div>
+<div class="sectionhead"><div class="kicker">03 / Example</div><h2>What happens when<br><em>a pole hears a band?</em></h2><p>Use the buttons to step through two possible scenarios. The animation is a diagram; it shows no measured route or live data.</p></div>
 <div class="walk">
 <div class="story-tabs" role="group" aria-label="Choose an illustrative scenario">
-<button class="story-tab" type="button" data-story="family" aria-pressed="true">A child separated from family</button>
-<button class="story-tab" type="button" data-story="vehicle" aria-pressed="false">A battery car passes a pole</button>
+<button class="story-tab" type="button" data-story="family" aria-pressed="true">Child separated from family</button>
+<button class="story-tab" type="button" data-story="vehicle" aria-pressed="false">Vehicle passes a pole</button>
 </div>
 <div class="story-live">
 <div class="story-scene" data-step="1" aria-hidden="true"><span class="scene-pole p1">⌁</span><span class="scene-pole p2">⌁</span><span class="scene-pole p3">⌁</span><span class="scene-pole p4">⌁</span><span class="scene-core">◉</span><span class="signal"></span></div>
 <div class="story-copy" aria-live="polite">
 <span class="story-count">STEP 1 OF 4</span><h3 id="story-title">The band sends a short signal.</h3>
-<p id="story-text">In this illustrative family scenario, the wearable broadcasts its current rotating identifier. It does not calculate GPS coordinates.</p>
+<p id="story-text">In this example, the band broadcasts its current rotating identifier. The band does not calculate GPS coordinates.</p>
 <div class="story-controls"><button type="button" id="story-prev" aria-label="Previous step" disabled>←</button><button type="button" id="story-next" aria-label="Next step">→</button><div class="story-dots" aria-hidden="true"><span class="story-dot active"></span><span class="story-dot"></span><span class="story-dot"></span><span class="story-dot"></span></div></div>
 <div class="disclaimer-mini">PROPOSED FLOW · ILLUSTRATIVE ONLY · NOT A DEPLOYMENT RESULT</div>
 </div>
@@ -129,23 +129,23 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 </div></section>
 
 <section id="evidence"><div class="wrap">
-<div class="sectionhead"><div class="kicker">03 / What the numbers say</div><h2>Two views of load.<br><em>Do not mix them up.</em></h2><p>The manuscript’s table and this repository’s synthetic event simulation answer different questions. One recomputes a formula; the other explores one chosen schedule.</p></div>
+<div class="sectionhead"><div class="kicker">04 / Results</div><h2>Paper calculations<br><em>and simulation results</em></h2><p>The paper table uses its own offered-load values. The simulation uses a separate synthetic schedule. These results are not interchangeable.</p></div>
 <div class="split">
 <article class="panel"><span class="label">Paper table · arithmetic check</span><h3>Pure-ALOHA at 3,000 tags</h3><p>Using the manuscript’s offered-load entries and P(loss) = 1 − exp(−2G):</p>
 <div class="barrow"><span>Baseline G=.390</span><div class="track"><div class="fill" style="width:54.2%"></div></div><b>54.2%</b></div>
 <div class="barrow"><span>Proposed G=.086</span><div class="track"><div class="fill gold" style="width:15.8%"></div></div><b>15.8%</b></div>
-<div class="verdict">The G values imply a <strong>77.9% offered-load reduction</strong>. The paper’s abstract says 82.4%; reconcile before quoting the abstract figure.</div>
+<div class="verdict">The G values imply a <strong>77.9% offered-load reduction</strong>. The abstract reports 82.4%. The paper needs to explain or correct the difference.</div>
 <div class="mathnote">Recomputed from G copied from the paper. This verifies arithmetic only; it does not validate how G was derived.</div></article>
-<article class="panel dark"><span class="label">Repository model · synthetic workload</span><h3>Scheduling changed the story</h3><p>In the configured one-hour, 3,000-tag, 60-pole scenario over 40 deterministic seeds:</p>
+<article class="panel dark"><span class="label">Simulation · synthetic inputs</span><h3>Packet loss in the synthetic run</h3><p>The configured scenario represents one hour, 3,000 tags, and 60 poles. Each case uses 40 fixed random seeds:</p>
 <div class="metric"><strong>56.7%</strong><span>baseline packet loss<br>single arrivals + raw heartbeat</span></div>
 <div class="metric"><strong>72.8%</strong><span>batched packet loss<br>15-second batch schedule</span></div>
-<div class="mathnote">Despite fewer packets, narrow periodic batch windows clustered transmissions. Under these explicit assumptions the batched case lost more packets. This is a schedule-sensitivity warning, not a shrine deployment prediction.</div></article>
+<div class="mathnote">The batch case sends fewer packets, but its narrow, repeating send windows cause more overlaps in this simulation. These inputs are synthetic; this is not a prediction for a shrine.</div></article>
 </div>
-<div class="callout"><strong>How to read the bars:</strong> figures above come from the checked-in CSVs. The first pair are paper-input arithmetic. The second pair are generated synthetic output. Neither is a field measurement.</div>
-<figure class="panel" style="margin:24px 0 0"><img src="jitter_sensitivity.svg" alt="Synthetic event-simulation packet loss falls as the maximum random delay before batch transmission increases, across four jitter settings."><figcaption style="padding:14px 4px 0;color:var(--muted);font-size:13px"><strong>Schedule sensitivity, synthetic only.</strong> Forty fixed-seed runs per setting; the mean load is unchanged while batch timing is spread over a wider interval. This is not field data or a validated network forecast. <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/results/jitter_sensitivity.csv">View the CSV</a>.</figcaption></figure>
+<div class="callout"><strong>Source of these numbers:</strong> the first pair are calculations using values from the paper. The second pair come from the synthetic simulation. Neither is measured field data.</div>
+<figure class="panel" style="margin:24px 0 0"><img src="jitter_sensitivity.svg" alt="Synthetic event-simulation packet loss falls as the maximum random delay before batch transmission increases, across four jitter settings."><figcaption style="padding:14px 4px 0;color:var(--muted);font-size:13px"><strong>Effect of send timing in the simulation.</strong> Each setting uses 40 fixed seeds. The average load stays the same while transmissions are spread over a wider window. These are synthetic results, not field data. <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/results/jitter_sensitivity.csv">Open the CSV</a>.</figcaption></figure>
 </div></section>
 <section style="background:#fffdf9" id="audit"><div class="wrap">
-<div class="sectionhead"><div class="kicker">04 / Audit before sharing</div><h2>Strong research<br><em>keeps its questions visible.</em></h2><p>The manuscript and repository are not the same thing as a validated deployment. Here are the issues a careful reviewer should see first.</p></div>
+<div class="sectionhead"><div class="kicker">05 / Open questions</div><h2>Claims that still<br><em>need evidence</em></h2><p>The checks below use values stated in the manuscript. Missing measurements and inconsistent figures remain unresolved.</p></div>
 <div class="tablewrap"><table><thead><tr><th>Question</th><th>What the repository can say</th><th>Status</th></tr></thead><tbody>
 <tr><td>Airtime and ALOHA math</td><td>Selected calculations can be reproduced under stated inputs; traffic derivation and traces are not supplied.</td><td><span class="label">Partial check</span></td></tr>
 <tr><td>99.4% vehicle capture</td><td>Five opportunities require at least 64.1% independent reception per advert; no measured per-ad reception probability is supplied.</td><td><span class="label">Unverified</span></td></tr>
@@ -156,7 +156,7 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 </tbody></table></div>
 </div></section>
 <section id="repo"><div class="wrap">
-<div class="sectionhead"><div class="kicker">05 / Explore the files</div><h2>Follow the evidence<br><em>back to its source.</em></h2><p>Start with the manuscript, inspect the assumptions, then reproduce selected calculations from the repository root.</p></div>
+<div class="sectionhead"><div class="kicker">06 / Files and commands</div><h2>Read the paper<br><em>and rerun the checks</em></h2><p>The links below go to the manuscript, inputs, scripts, and generated results.</p></div>
 <div class="repo">
 <a class="file" href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_research_draft.pdf"><code>paper/rakshasutra_research_draft.pdf</code><p>Reader copy with the unsupported IEEE journal masthead removed; article content is preserved.</p></a>
 <a class="file" href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_open.pdf"><code>paper/rakshasutra_open.pdf</code><p>Original supplied PDF, preserved unchanged as the source under review.</p></a>
@@ -169,11 +169,11 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 <div class="file"><code>results/jitter_sensitivity.csv</code><p>Run-level synthetic benchmark summary across four batch-jitter settings.</p></div>
 <div class="file"><code>tests/</code><p>Small deterministic unit tests and explicitly synthetic edge-case fixtures.</p></div>
 </div>
-<div class="actions"><a class="button dark" href="https://github.com/0xr4j/rakshasutra-main">Open repository ↗</a><a class="button light" href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/reproduction.md">Reproduce the checks ↗</a></div>
-<div class="notice"><h3>Safety, privacy, and intended use</h3><p>This is an early research concept and analysis set. It is not a validated tracking product, emergency-response system, or safety-certified design. Do not rely on it for real-world safeguarding. Any prototype or deployment requires consent design, privacy/legal review, security testing, RF and battery testing, venue approval, and supervised operational trials.</p></div>
+<div class="actions"><a class="button dark" href="https://github.com/0xr4j/rakshasutra-main">Open repository ↗</a><a class="button light" href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/reproduction.md">Run the checks ↗</a></div>
+<div class="notice"><h3>Safety and privacy</h3><p>This proposal has not been validated as a tracking product or emergency-response system. Do not rely on it for real-world safeguarding. Any prototype needs consent and access controls, privacy and security review, radio and battery tests, venue approval, and supervised trials.</p></div>
 </div></section>
 </main>
-<footer class="footer"><div class="wrap footgrid"><div><b>RAKSHASUTRA / SURAKSHANET</b><p>A proposed last-heard checkpoint architecture. This repository audits selected claims; it does not establish field performance or certify the manuscript’s reported outcomes.</p><p style="margin-top:12px"><a href="https://github.com/0xr4j/rakshasutra-main">Source repository</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_research_draft.pdf">Research draft</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_open.pdf">Original supplied PDF</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/claim-audit.md">Full claim audit</a></p></div><div><small>AUTHOR-SUPPLIED MANUSCRIPT · SELECTED CALCULATIONS · SYNTHETIC SIMULATION<br>NO FIELD DEPLOYMENT DATA SUPPLIED</small></div></div></footer>
+<footer class="footer"><div class="wrap footgrid"><div><b>RAKSHASUTRA / SURAKSHANET</b><p>A proposed checkpoint system. This repository checks selected calculations; it contains no field results.</p><p style="margin-top:12px"><a href="https://github.com/0xr4j/rakshasutra-main">Source repository</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_research_draft.pdf">Research draft</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/paper/rakshasutra_open.pdf">Original supplied PDF</a> · <a href="https://github.com/0xr4j/rakshasutra-main/blob/main/docs/claim-audit.md">Full claim audit</a></p></div><div><small>Based on the supplied manuscript.<br>No field deployment data are included.</small></div></div></footer>
 
 <script>
 (() => {
@@ -197,16 +197,16 @@ section{padding:92px 0}.sectionhead{display:grid;grid-template-columns:.55fr 1.4
 
   const stories = {
     family: [
-      ['The band sends a short signal.','In this illustrative family scenario, the wearable broadcasts its current rotating identifier. It does not calculate GPS coordinates.'],
-      ['A nearby pole may hear it.','If radio conditions allow, a smart pole records that it heard the band. A missed signal or a gap between poles remains possible.'],
-      ['The observation travels onward.','The proposed gateway relays a compact observation to the backend. A delayed or failed backhaul would delay the record.'],
-      ['An authorized person checks.','If the service is operating and access is approved, staff may see the last-heard checkpoint. That is an area clue, not a live position or guarantee of rescue.']
+      ['The band sends a short signal.','In this example, the band broadcasts its current rotating identifier. The band does not calculate GPS coordinates.'],
+      ['A nearby pole may receive it.','If the signal reaches a pole, the pole stores a time-stamped record. The signal can be missed, and there may be gaps between poles.'],
+      ['The pole sends its record onward.','A gateway relays the record to the proposed server. If that link is delayed or fails, the record will be delayed or missing.'],
+      ['Authorized staff check the record.','If the service is working and access is approved, staff can see the last pole that received the band. It is an area clue, not a live position or a guarantee of rescue.']
     ],
     vehicle: [
-      ['The band sends a short signal.','For this illustrative passing-vehicle scenario, a band broadcasts while moving past the route. The animation does not model speed or reception probability.'],
-      ['A pole listens as it passes.','A pole may capture one or more advertisements if the link budget, antenna direction, timing, and interference allow it.'],
-      ['The gateway forwards an observation.','A pole observation can be relayed to the proposed backend. The paper’s capture percentage still needs a justified reception model and field measurement.'],
-      ['The backend keeps a checkpoint.','The system can only report a received observation and its checkpoint context. No continuous trajectory is inferred by this demo.']
+      ['The band sends a short signal.','Here a band broadcasts as a vehicle moves along the route. The animation does not model vehicle speed or the chance of reception.'],
+      ['A pole may receive the signal.','Reception depends on the radio link, antenna direction, timing, and interference. The number of successful receptions has not been measured.'],
+      ['The gateway forwards the record.','The proposed gateway sends the pole record to the server. The paper’s capture percentage still needs a defined model and field measurements.'],
+      ['The server stores the checkpoint.','The server can report a received record and which pole sent it. This example does not create a continuous route.']
     ]
   };
   let scenario = 'family', step = 0;
