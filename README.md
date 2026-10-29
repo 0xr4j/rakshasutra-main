@@ -1,10 +1,10 @@
 <div align="center">
   <img src="figures/hero.svg" alt="Rakshasutra concept: a BLE wristband is heard by a smart pole, relayed through a gateway, and used for an authorized last-heard checkpoint lookup" width="100%">
   <h1>Rakshasutra · SurakshaNet</h1>
-  <p><strong>A last-heard checkpoint, not a live location.</strong><br>
-  Research engineering for a proposed BLE-wearable and LoRaWAN checkpoint architecture.</p>
+  <p><strong>The last pole that heard the band.</strong><br>
+  A BLE and LoRaWAN checkpoint proposal for pilgrim routes.</p>
   <p>
-    <a href="https://0xr4j.github.io/rakshasutra-main/">Open the animated project site</a> ·
+    <a href="https://0xr4j.github.io/rakshasutra-main/">Open the project site</a> ·
     <a href="paper/rakshasutra_research_draft.pdf">Read the research draft</a> ·
     <a href="paper/rakshasutra_open.pdf">View the original supplied PDF</a> ·
     <a href="docs/claim-audit.md">Claim-by-claim audit</a> ·
@@ -13,26 +13,18 @@
   </p>
 </div>
 
-**Project description:** Rakshasutra (SurakshaNet) is a proposed BLE-wearable and LoRaWAN checkpoint architecture for recording the most recent receiver observation along crowded pilgrim routes. This repository includes the supplied manuscript, reproducible engineering calculations, a selected claim audit, and explicitly synthetic traffic simulations. It contains no field dataset or deployment evidence; the calculations and simulations do not establish radio range, battery life, privacy guarantees, or safety efficacy.
+**Project:** Rakshasutra (SurakshaNet) is a proposal for BLE wristbands and fixed receivers at selected points along pilgrim routes. This repository contains the supplied paper, calculation scripts, and a traffic simulation with synthetic inputs. It has no field data or deployment records.
 
-The reader copy at [`paper/rakshasutra_research_draft.pdf`](paper/rakshasutra_research_draft.pdf) replaces the IEEE journal masthead with “Rakshasutra | Research Draft.” The original supplied PDF remains unchanged and is separately linked above.
+The reader copy at [`paper/rakshasutra_research_draft.pdf`](paper/rakshasutra_research_draft.pdf) replaces the IEEE journal masthead with “Rakshasutra | Research Draft.” The original supplied PDF remains unchanged.
 
-## Project overview
+## How it could work
 
-Rakshasutra (SurakshaNet) is a proposed BLE-wearable and LoRaWAN checkpoint architecture for crowded pilgrim routes where smartphone access or cellular service may be limited. A wearable broadcasts a short BLE identifier; fixed receivers at smart poles may record time-stamped observations and forward compact records through gateways to an authorized server workflow. The intended output is the most recent pole observation that successfully received the wearable—not a continuous GPS location.
+A wristband broadcasts a short BLE identifier. A nearby pole may receive it and store the time. A gateway can forward the record to a server for an authorized lookup. The paper also proposes rotating identifiers, filtering records at the poles, and sending compact presence messages.
 
-The supplied manuscript explores rotating pseudonyms, pole-side event filtering, compact presence heartbeats, and caregiver-separation alerts. This repository preserves the manuscript and provides reproducible calculations, a selected claim audit, and explicitly synthetic traffic simulations. It contains no raw field dataset, hardware logs, complete test protocol, or deployment record. These calculations and simulations do not establish coverage, battery runtime, privacy guarantees, or safety efficacy; those require implementation and supervised field validation.
+The result would be the latest pole that heard the band, not a live GPS position. If no pole receives it, or there is a long gap between poles, the record may be missing or out of date. This repository checks selected paper calculations and uses synthetic traffic; it does not show that the system works at a shrine.
 
 > [!IMPORTANT]
-> **Evidence status:** This repository preserves an author-supplied manuscript and checks selected calculations. It contains no supplied raw field dataset, hardware logs, deployment record, or complete experimental protocol. The simulation is synthetic and assumption-driven. None of these materials establish field performance, safety, or deployment readiness.
-
-## The idea, in one minute
-
-A wristband broadcasts a short BLE identifier. A nearby smart pole may hear it and record a time-stamped checkpoint observation. A gateway relays compact pole messages to a server, where an authorized workflow could resolve the last known checkpoint.
-
-**That is a last-heard checkpoint, not a live GPS location.** If no pole hears the band, or the route between poles is large, the system has a blind spot.
-
-The proposal is motivated by crowded pilgrimage routes where cellular coverage or phone use may be limited. The repository examines whether selected claims and assumptions are internally consistent; it does not demonstrate that the proposed network works at a shrine.
+> No raw field dataset, hardware logs, or deployment record were supplied. The simulation uses stated synthetic inputs. These materials do not establish field performance, safety, or readiness for deployment.
 
 ## Start here
 
@@ -40,7 +32,7 @@ The proposal is motivated by crowded pilgrimage routes where cellular coverage o
 |---|---|
 | Read the public-facing manuscript copy | [Research draft PDF](paper/rakshasutra_research_draft.pdf) |
 | Compare with the original supplied file | [Original PDF](paper/rakshasutra_open.pdf) |
-| See which claims do and do not check out | [Selected claim audit](docs/claim-audit.md) |
+| Read the claim audit | [Selected claim audit](docs/claim-audit.md) |
 | Rerun the calculations | [Reproduction guide](docs/reproduction.md) |
 | Inspect the chosen synthetic workload | [Scenario inputs](configs/traffic_scenario.json) |
 | See paper values beside recalculations | [Reconciliation CSV](results/paper_reconciliation.csv) |
@@ -49,7 +41,7 @@ The proposal is motivated by crowded pilgrimage routes where cellular coverage o
 | See the full calculation inputs | [Claim inputs](configs/claims.json) |
 | Browse every output | [Results](results/) · [Figures](figures/) |
 
-The [interactive project site](https://0xr4j.github.io/rakshasutra-main/) is deployed with GitHub Pages from `docs/`. GitHub Actions deploys automatically when `main` changes. The repository and site are public.
+The [project site](https://0xr4j.github.io/rakshasutra-main/) is published from `docs/` with GitHub Pages. Changes to `main` trigger deployment through GitHub Actions.
 
 ## What is in this repository
 
@@ -77,7 +69,7 @@ python simulation/sensitivity.py
 
 The audit script rewrites selected CSVs in `results/` and analytical plots in `figures/`. The traffic script runs the scenario described in `configs/traffic_scenario.json` and writes its summary, run-level CSV, and plot. The sensitivity script repeats that synthetic workload across four batch-jitter settings. GitHub Actions runs the unit tests and regenerates all outputs before deploying the Pages site. These commands do **not** reproduce a shrine deployment or the manuscript’s raw experiment traces.
 
-## A careful reading of the numbers
+## Paper values and simulation results
 
 ### The manuscript's 3,000-tag ALOHA table
 
@@ -87,7 +79,7 @@ Those two offered-load entries imply a **77.9% reduction in offered load**. The 
 
 ### The repository's separate synthetic schedule
 
-The event simulation produces a different lesson under its own configured assumptions:
+The event simulation uses a separate synthetic workload:
 
 | One-hour, 3,000-tag scenario | Mean simulated packet loss |
 |---|---:|
@@ -104,7 +96,7 @@ The batched case sends fewer packets, but this schedule emits them in narrow per
 - **Capacitor pulse check:** an ideal 100 µF capacitor alone would drop 32 V while supplying 32 mA for 100 ms. The complete battery-plus-capacitor circuit needs a bench test.
 - **Radio range:** a link-budget calculation is not an RF range test. Site geometry, body loss, antennas, crowding, interference, and equipment need measurement.
 
-Use [the full audit](docs/claim-audit.md) before quoting any number from this repository.
+The [claim audit](docs/claim-audit.md) lists the assumptions and limitations behind these results.
 
 ## Repository map
 

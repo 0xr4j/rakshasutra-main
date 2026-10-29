@@ -160,7 +160,7 @@ def write_figure(path: Path, rows: list[list[object]]) -> None:
     parts = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img">',
              '<rect width="100%" height="100%" fill="#0b1120"/>',
              '<style>text{font-family:Inter,Segoe UI,Arial,sans-serif}.title{fill:#f4f7fb;font-size:25px;font-weight:700}.sub{fill:#9eacc3;font-size:14px}.label{fill:#d7e2f2;font-size:13px}.grid{stroke:#26344b}</style>',
-             '<text x="70" y="48" class="title">Batching reduces packets, but timing can dominate collisions</text>',
+             '<text x="70" y="48" class="title">Fewer packets, more collisions in this batch schedule</text>',
              f'<text x="70" y="75" class="sub">{int(rows[0][9])} deterministic seeds; one-hour synthetic workload; 3,000 tags, 60 poles, 8 channels</text>']
     panels = [(70, "Offered load per channel (G)", [float(row[2]) for row in rows], 0.5, [0, .1, .2, .3, .4, .5], False),
               (550, "Packet loss in event simulation", [float(row[4]) for row in rows], 1.0, [0, .2, .4, .6, .8, 1.0], True)]

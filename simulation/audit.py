@@ -68,7 +68,7 @@ def svg_line_chart(path: Path, title: str, subtitle: str, x_label: str, y_label:
         legend_x = left + index * 220
         parts += [f'<line x1="{legend_x}" y1="{height-62}" x2="{legend_x+27}" y2="{height-62}" stroke="{color}" stroke-width="3"/>',
                   f'<text x="{legend_x+36}" y="{height-57}" class="muted small">{esc(name)}</text>']
-    parts.append(f'<text x="{left}" y="{height-7}" class="muted" font-size="11">Analytical / assumption-based illustration; not field measurements.</text>')
+    parts.append(f'<text x="{left}" y="{height-7}" class="muted" font-size="11">Calculated from stated inputs; no field measurements.</text>')
     parts.append('</svg>')
     path.write_text("\n".join(parts), encoding="utf-8")
 
@@ -160,7 +160,7 @@ def main() -> None:
     write_csv(output / "results" / "aloha_claim_check.csv",
               ["architecture", "active_tags_in_cell", "offered_load_fraction_from_paper", "recomputed_loss_fraction", "status"], aloha_rows)
     svg_line_chart(output / "figures" / "aloha_claim_check.svg",
-                   "Paper table: offered load to pure-ALOHA loss",
+                   "Pure-ALOHA loss from the paper’s offered-load values",
                    "Recomputes only the formula using the manuscript's G values",
                    "Active tags stated for cell", "Packet loss", lines, 500, 3000, 0, 1,
                    n_cells, [0, .2, .4, .6, .8, 1], True)
@@ -176,7 +176,7 @@ def main() -> None:
     write_csv(output / "results" / "bloom_false_positive.csv",
               ["inserted_ids", "filter_bits", "hashes", "approx_false_positive_fraction", "status"], bloom_rows)
     svg_line_chart(output / "figures" / "bloom_false_positive.svg",
-                   "Bloom-filter false positives grow with occupancy",
+                   "Bloom-filter false-positive rate by population size",
                    "512-bit filter, three hashes; standard approximation",
                    "Inserted IDs", "False-positive probability", [("512 bits / 3 hashes", bloom_points, "#58d6c5")],
                    0, 1024, 0, 1, [0, 200, 400, 600, 800, 1000], [0, .2, .4, .6, .8, 1], True)
@@ -224,7 +224,7 @@ def main() -> None:
             pts.append((hours, months))
         batt_plot.append((label, pts, "#58d6c5" if capacity == bat["cold_capacity_mah"] else "#ffbf69"))
     svg_line_chart(output / "figures" / "battery_idealized_runtime.svg",
-                   "Ideal capacity/current battery arithmetic",
+                   "Ideal battery-life estimate from capacity and current",
                    "Ignores pulse loads, cutoff, cold discharge curves, losses and aging",
                    "Active hours per day", "Idealized months", batt_plot, 8, 24, 0, 90,
                    [8, 10, 12, 14, 16, 18, 20, 22, 24], [0, 15, 30, 45, 60, 75, 90])
